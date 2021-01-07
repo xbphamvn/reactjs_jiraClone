@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import JiraHome from './pages/JiraHome/JiraHome';
+import { JiraTemplate } from './templates/JiraTemplate/JiraTemplate';
+import { LoginTemplate } from './templates/LoginTemplate/LoginTemplate';
+import JiraLogin from './pages/JiraLogin/JiraLogin';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <JiraTemplate exact path="/" Component={JiraHome} />
+        <LoginTemplate exact path="/login" Component={JiraLogin} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
