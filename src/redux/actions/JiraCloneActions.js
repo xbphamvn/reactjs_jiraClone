@@ -1,6 +1,9 @@
+import { SGA_JIRA_USER_LOGIN } from "../constants/JiraCloneConsts";
 
 
-export const actSomething = (payload) => ({
-    type: 'type',
-    payload
+
+//Saga actions
+export const sgaJiraUserLogin = (userData) => ({
+    type: SGA_JIRA_USER_LOGIN,
+    userData
 })

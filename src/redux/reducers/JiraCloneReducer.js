@@ -1,3 +1,5 @@
+import {  } from "../constants/JiraCloneConsts";
+
 const initialState = {
     //
 }
@@ -5,7 +7,7 @@ const initialState = {
 export const JiraCloneReducer = (state = initialState, action) => {
     switch (action.type) {
 
-    case 'typeName':
+    case '':
         return { ...state };
 
     default:
