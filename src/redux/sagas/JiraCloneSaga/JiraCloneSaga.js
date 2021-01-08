@@ -3,7 +3,6 @@ import { jiraCloneServices } from '../../../services/JiraCloneServices/JiraClone
 import { SGA_JIRA_USER_LOGIN } from '../../constants/JiraCloneConsts';
 
 function* userLogin(action) {
-    // console.log(action.userData);
     try {
         const {data, status} = yield call(() => jiraCloneServices.sgUserLogin(action.userData));
         console.log(data, status);
