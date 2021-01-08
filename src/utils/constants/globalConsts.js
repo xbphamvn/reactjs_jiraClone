@@ -6,5 +6,5 @@ export const CODE_STATUS = {
     SERVER_ERR: 500,
 }
 
-export const LOCALSTORAGE_DATA_TOKEN_NAME = 'accessToken';
-export const LOCALSTORAGE_DATA_USER_NAME = 'userData';
+export const LOCALSTORAGE_TOKEN_NAME = 'accessToken';
+export const LOCALSTORAGE_USER_DATA_NAME = 'userData';

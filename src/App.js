@@ -12,8 +12,8 @@ function App() {
     <BrowserRouter>
       <LoadingOverlay />
       <Switch>
-        <JiraTemplate exact path="/" Component={JiraHome} />
-        <LoginTemplate exact path="/login" Component={JiraLogin} />
+        <JiraTemplate exact path="/home" Component={JiraHome} />
+        <LoginTemplate exact path="/" Component={JiraLogin} />
       </Switch>
     </BrowserRouter>
   );
