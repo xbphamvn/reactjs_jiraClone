@@ -8,7 +8,7 @@ export const LoginTemplate = (props) => {
 
     return <Route path={restParam.path} render={(propsRoute) => (
         <Layout>
-            <Layout.Sider width={'50vw'} style={{height: '100vh'}} />
+            <Layout.Sider width={'50vw'} style={{height: '100vh', background: 'url("./img/jira_login/bg_universe.jpg") center', backgroundSize: 'cover'}} />
             <Layout>
                 <Component {...propsRoute} />
             </Layout>

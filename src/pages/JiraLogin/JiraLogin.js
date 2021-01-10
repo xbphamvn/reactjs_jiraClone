@@ -13,7 +13,7 @@ export default function JiraLogin(props) {
     };
 
     return (
-        <Form name="normal_login" className="login-form w-50 mx-auto" style={{marginTop: '24%'}} initialValues={{ remember: true }} onFinish={onFinish}>
+        <Form name="normal_login" className="login-form col-lg-6 mx-auto" style={{marginTop: '24%'}} initialValues={{ remember: true }} onFinish={onFinish}>
             <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
                 <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
             </Form.Item>
