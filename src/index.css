@@ -1,0 +1,51 @@
+/* Menu */
+.sidebarMenu {
+    width: 256px;
+    height: 100vh;
+    padding: 25px 16px;
+    background-color: rgb(244, 245, 247);
+    z-index: 0;
+}
+
+.profile__avatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 10%;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    color: blue;
+    background-color: gray;
+}
+
+.profile__info {
+    color: rgb(66, 82, 110);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.profile__info small {
+    color: rgb(94, 108, 132);
+    font-size: 13px;
+}
+
+/* Menu options */
+.sidebar__options {
+    margin-top: 30px;
+}
+
+.options__item {
+    color: #333;
+    font-size: 14px;
+    display: block;
+    padding: 7px 10px;
+    cursor: pointer;
+    margin: 0;
+    transition: all .5s;
+}
+
+.options__item.sidebar_active, .options__item:hover {
+    color: #0052cc;
+    border-radius: 5px;
+    background-color: rgb(235, 236, 240);
+}
