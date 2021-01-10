@@ -4,7 +4,7 @@ const initialState = {
     history: {}
 }
 
-export const JiraCloneReducer = (state = initialState, action) => {
+export const JiraPushHistoryToReduxReducer = (state = initialState, action) => {
     switch (action.type) {
 
     case ACT_PUSH_HISTORY_PROP_TO_REDUX:

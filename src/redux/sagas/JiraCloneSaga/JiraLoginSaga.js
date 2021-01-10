@@ -7,7 +7,7 @@ import { SGA_JIRA_USER_LOGIN } from '../../constants/JiraCloneConsts';
 
 function* userLogin(action) {
 
-    const {history} = yield select(state => state.JiraCloneReducer);
+    const {history} = yield select(state => state.JiraPushHistoryToReduxReducer);
 
     yield put(actDisplayLoadingOverlay());
     try {
@@ -22,6 +22,7 @@ function* userLogin(action) {
         }
     } catch (err) {
         console.log(err);
+        alert('Email or password was wrong. Please check again!')
     }
     yield delay(500);
     yield put(actHideLoadingOverlay());

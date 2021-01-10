@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 import MenuSideBar from '../../components/MenuSideBar/MenuSideBar';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export const JiraTemplate = (props) => {
 
@@ -13,13 +13,12 @@ export const JiraTemplate = (props) => {
         <Layout style={{ minHeight: '100vh' }}>
             <MenuSideBar />
             <Layout className="site-layout">
-                {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
-                <Content style={{ padding: '12px 36px', backgroundColor: '#fff' }}>
+                <Content style={{ padding: '12px 30px', backgroundColor: '#fff' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                    <div className="site-layout-background" style={{ minHeight: 360 }}>
                         <Component {...propsRoute} />
                     </div>
                 </Content>

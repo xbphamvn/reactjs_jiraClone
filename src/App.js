@@ -9,6 +9,9 @@ import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { actPushHistoryPropToRedux } from './redux/actions/JiraCloneActions';
+import JiraCreateProject from './pages/JiraCreateProject/JiraCreateProject';
+import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAGEMENT } from './utils/constants/globalConsts';
+import JiraProjectManagement from './pages/JiraProjectManagement/JiraProjectManagement';
 
 function App() {
 
@@ -25,7 +28,10 @@ function App() {
     <Route>
       <LoadingOverlay />
       <Switch>
-        <JiraTemplate exact path="/home" Component={JiraHome} />
+        <JiraTemplate exact path={JIRA_PATH_DASH_BOARD} Component={JiraHome} />
+        <JiraTemplate exact path={JIRA_PATH_PROJECT_MANAGEMENT} Component={JiraProjectManagement} />
+        <JiraTemplate exact path={JIRA_PATH_CREATE_PROJECT} Component={JiraCreateProject} />
+        
         <LoginTemplate exact path="/" Component={JiraLogin} />
       </Switch>
     </Route>
