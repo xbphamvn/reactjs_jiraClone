@@ -1,6 +1,6 @@
 import { call, delay, put, select, takeLatest } from 'redux-saga/effects';
 import { jiraCloneServices } from '../../../services/JiraCloneServices/JiraCloneServices';
-import { CODE_STATUS, LOCALSTORAGE_TOKEN_NAME, LOCALSTORAGE_USER_DATA_NAME } from '../../../utils/constants/globalConsts';
+import { CODE_STATUS, JIRA_PATH_PROJECT_MANAGEMENT, LOCALSTORAGE_TOKEN_NAME, LOCALSTORAGE_USER_DATA_NAME } from '../../../utils/constants/globalConsts';
 import { actUpdateUserLoginedData } from '../../actions/JiraCloneActions';
 import { actDisplayLoadingOverlay, actHideLoadingOverlay } from '../../actions/LoadingActions';
 import { SGA_JIRA_USER_LOGIN } from '../../constants/JiraCloneConsts';
@@ -16,7 +16,7 @@ function* userLogin(action) {
             localStorage.setItem(LOCALSTORAGE_TOKEN_NAME, data.content.accessToken);
             localStorage.setItem(LOCALSTORAGE_USER_DATA_NAME, JSON.stringify(data.content));
             yield put(actUpdateUserLoginedData(data.content));
-            history.push('/home');
+            history.push(JIRA_PATH_PROJECT_MANAGEMENT);
         } else {
             console.log('Something was wrong! Please check again!');
         }
