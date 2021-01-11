@@ -2,6 +2,7 @@ import {all} from 'redux-saga/effects';
 import * as sgaUserLogin from './JiraCloneSaga/JiraLoginSaga';
 import * as sgaCreateProject from './JiraCloneSaga/JiraCreateProjectSaga';
 import * as sgaProjectManagement from './JiraCloneSaga/JiraProjectManagementSaga';
+import * as sgaUpdateProjectForm from './JiraCloneSaga/JiraComponentsSaga/UpdateProjectFormSaga';
 
 export function* rootSaga() {
     yield all([
@@ -11,5 +12,7 @@ export function* rootSaga() {
         sgaCreateProject.listenCreateProjectApi(),
         //Project management
         sgaProjectManagement.listenGetAllProjectApi(),
+        //Update project after edited
+        sgaUpdateProjectForm.listenSubmitBtnAfterEditedProject(),
     ])
 }

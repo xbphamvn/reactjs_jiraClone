@@ -1,4 +1,4 @@
-import { BaseServices } from "./BaseServices";
+import { BaseServices } from "../BaseServices";
 
 class JiraCloneServices extends BaseServices {
 

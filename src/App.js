@@ -12,6 +12,7 @@ import { actPushHistoryPropToRedux } from './redux/actions/JiraCloneActions';
 import JiraCreateProject from './pages/JiraCreateProject/JiraCreateProject';
 import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAGEMENT } from './utils/constants/globalConsts';
 import JiraProjectManagement from './pages/JiraProjectManagement/JiraProjectManagement';
+import JiraHOCDrawer from './HOC/JiraHOCDrawer/JiraHOCDrawer';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <Route>
       <LoadingOverlay />
+      <JiraHOCDrawer />
       <Switch>
         <JiraTemplate exact path={JIRA_PATH_DASH_BOARD} Component={JiraHome} />
         <JiraTemplate exact path={JIRA_PATH_PROJECT_MANAGEMENT} Component={JiraProjectManagement} />

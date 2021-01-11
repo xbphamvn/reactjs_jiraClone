@@ -5,6 +5,8 @@ import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementRe
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
 import { LoadingReducer } from './reducers/LoadingReducer';
+import { UpdateProjectFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/UpdateProjectFormReducer';
+import { JiraHOCDrawerReducer } from './reducers/ReducersHOC/JiraHOCDrawerReducer';
 import { rootSaga } from './sagas/rootSaga';
 
 //setup saga
@@ -16,6 +18,9 @@ const rootReducer = combineReducers({
     JiraUserLoginedReducer,
     JiraCreateProjectReducer,
     JiraProjectManagementReducer,
+    //HOC Drawer
+    JiraHOCDrawerReducer,
+    UpdateProjectFormReducer,
 });
 
 export const store = createStore(

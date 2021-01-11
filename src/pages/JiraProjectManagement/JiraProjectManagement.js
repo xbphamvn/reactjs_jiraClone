@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
+import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
 import { Table, Button, Space, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
+import UpdateProjectForm from '../../components/JiraForms/UpdateProjectForm';
 
 export default function JiraProjectManagement(props) {
 
@@ -16,8 +17,6 @@ export default function JiraProjectManagement(props) {
         dispatch(sgaGetAllProjectApi());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    console.log(allProjectArr);
 
     const [state, setState] = useState({
         filteredInfo: null,
@@ -61,15 +60,17 @@ export default function JiraProjectManagement(props) {
             title: 'id',
             dataIndex: 'id',
             key: 'id',
-            onFilter: (value, record) => record.id.includes(value),
+            // onFilter: (value, record) => record.id.includes(value),
             sorter: (a, b) => a.id - b.id,
+            sortDirections: ['descend']
         },
         {
             title: 'projectName',
             dataIndex: 'projectName',
             key: 'projectName',
-            sorter: (a, b) => a.projectName - b.projectName,
-            ellipsis: true,
+            sorter: (a, b) => a.projectName.toLowerCase() < b.projectName.toLowerCase(),
+            sortDirections: ['descend']
+            // ellipsis: true,
         },
         // {
         //     title: 'description',
@@ -98,8 +99,8 @@ export default function JiraProjectManagement(props) {
             render: (text, record) => (
                 <Space middle="true">
                     <EditOutlined className="btn btn-sm btn-primary" onClick={() => {
-                        // dispatch(actDisplayEditProjectForm(<UpdateProjectForm />));
-                        // dispatch(actMapEditProjectDataToRedux(record));
+                        dispatch(actClickEditBtnProjectItem(<UpdateProjectForm />));
+                        dispatch(actPushProjectItemDataToRedux(record));
                     }} />
                     <Popconfirm
                         title="Are you sure to delete this project?"

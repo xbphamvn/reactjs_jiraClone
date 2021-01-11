@@ -1,4 +1,4 @@
-import { ACT_PUSH_HISTORY_PROP_TO_REDUX, ACT_UPDATE_USER_LOGINED_DATA, ACT_CREATE_GET_PROJECT_CATEGORIES_API, SGA_JIRA_CREATE_GET_PROJECT_CATEGORIES, SGA_JIRA_USER_LOGIN, SGA_JIRA_CREATE_NEW_PROJECT, ACT_MANAGEMENT_GET_ALL_PROJECT_API, SGA_MANAGEMENT_GET_ALL_PROJECT } from "../constants/JiraCloneConsts";
+import { ACT_PUSH_HISTORY_PROP_TO_REDUX, ACT_UPDATE_USER_LOGINED_DATA, ACT_CREATE_GET_PROJECT_CATEGORIES_API, SGA_JIRA_CREATE_GET_PROJECT_CATEGORIES, SGA_JIRA_USER_LOGIN, SGA_JIRA_CREATE_NEW_PROJECT, ACT_MANAGEMENT_GET_ALL_PROJECT_API, SGA_MANAGEMENT_GET_ALL_PROJECT, ACT_EDIT_BTN_MANAGEMENT_PROJECT_ITEM, ACT_HIDE_JIRA_HOC_DRAWER, ACT_PUSH_PROJECT_ITEM_DATA_TO_REDUX, ACT_SET_SUBMIT_BTN_JIRA_HOC_DRAWER, SGA_SUBMIT_BTN_AFTER_EDITED_PROJECT } from "../constants/JiraCloneConsts";
 
 export const actUpdateUserLoginedData = (data) => ({
     type: ACT_UPDATE_USER_LOGINED_DATA,
@@ -23,6 +23,27 @@ export const actGetAllProjectApi = (allProjectArr) => ({
     type: ACT_MANAGEMENT_GET_ALL_PROJECT_API,
     allProjectArr
 })
+//2. Click edit button of a project item
+export const actClickEditBtnProjectItem = (Component) => ({
+    type: ACT_EDIT_BTN_MANAGEMENT_PROJECT_ITEM,
+    Component
+})
+
+//Drawer Jira HOC
+//1. Display/Hide drawer
+export const actHideDrawerJiraHOCDrawer = () => ({
+    type: ACT_HIDE_JIRA_HOC_DRAWER
+})
+//2. Push submit button of Drawer to redux!
+export const actSetSubmitBtnJiraHOCDrawer = (callBackFunc) => ({
+    type: ACT_SET_SUBMIT_BTN_JIRA_HOC_DRAWER,
+    callBackFunc
+})
+//2. Push project item to drawer reducer
+export const actPushProjectItemDataToRedux = (record) => ({
+    type: ACT_PUSH_PROJECT_ITEM_DATA_TO_REDUX,
+    record
+})
 
 //Saga actions-----------------------------
 //Login
@@ -46,4 +67,9 @@ export const sgaCreateNewProjectApi = (values) => ({
 //1. Get all projects
 export const sgaGetAllProjectApi = () => ({
     type: SGA_MANAGEMENT_GET_ALL_PROJECT
+})
+
+export const sgaSubmitBtnAfterEditedProject = (values) => ({
+    type: SGA_SUBMIT_BTN_AFTER_EDITED_PROJECT,
+    values
 })

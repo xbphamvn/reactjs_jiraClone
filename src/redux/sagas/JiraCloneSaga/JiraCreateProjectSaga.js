@@ -28,10 +28,11 @@ function* createProjectApi(action) {
     yield put(actDisplayLoadingOverlay());
 
     try {
-        const { data, status } = yield call(() => jiraCloneServices.sgCreateNewProjectApi(action.values));
+        const { status } = yield call(() => jiraCloneServices.sgCreateNewProjectApi(action.values));
         if (status === CODE_STATUS.SUCCESS) {
-            console.log(data);
             history.push(JIRA_PATH_PROJECT_MANAGEMENT);
+        } else {
+            console.log('Something was wrong! For developer only!');
         }
     } catch (err) {
         console.log(err);

@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { BE_PREFIX_JIRA_CLONE_URL, LOCALSTORAGE_TOKEN_NAME } from "../../utils/constants/globalConsts";
+import { BE_PREFIX_JIRA_CLONE_URL, LOCALSTORAGE_TOKEN_NAME } from "../utils/constants/globalConsts";
 
 export class BaseServices {
 
