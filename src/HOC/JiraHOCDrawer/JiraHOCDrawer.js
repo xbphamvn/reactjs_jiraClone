@@ -20,8 +20,7 @@ export default function JiraHOCDrawer(props) {
                 width={'50%'}
                 onClose={onClose}
                 visible={visibleDrawer}
-                bodyStyle={{ paddingBottom: 80 }}
-                scrolllocker="none"
+                bodyStyle={{ paddingBottom: 50 }}
                 footer={
                     <div style={{ textAlign: 'right', }}>
                         <Button onClick={onClose} style={{ marginRight: 8 }}>

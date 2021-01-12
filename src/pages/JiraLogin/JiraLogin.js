@@ -19,7 +19,7 @@ export default function JiraLogin(props) {
                 <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
             </Form.Item>
             <Form.Item name="passWord" rules={[{ required: true, message: 'Please input your Password!' }]}>
-                <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" />
+                <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" autoComplete="none" placeholder="Password" />
             </Form.Item>
             <Form.Item>
                 <Form.Item name="remember" valuePropName="" noStyle>

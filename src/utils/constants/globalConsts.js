@@ -16,3 +16,15 @@ export const CODE_STATUS = {
 //Set item and get item to/from local storage
 export const LOCALSTORAGE_TOKEN_NAME = 'accessToken';
 export const LOCALSTORAGE_USER_DATA_NAME = 'userData';
+
+//System Notification
+//Notification status
+export const NOTIFICATION_ANTD_SUCCESS = 'success';
+export const NOTIFICATION_ANTD_ERROR = 'error';
+export const NOTIFICATION_ANTD_INFO = 'info';
+export const NOTIFICATION_ANTD_WARNING = 'warning';
+//Notification messages
+export const NOTIFICATION_ANTD_MESSAGE_SUCCESS = 'Delete project success!';
+export const NOTIFICATION_ANTD_MESSAGE_INFO = 'For your information!';
+export const NOTIFICATION_ANTD_MESSAGE_WARNING = 'System warning!';
+export const NOTIFICATION_ANTD_MESSAGE_ERROR = 'Delete project fail!';

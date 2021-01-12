@@ -21,6 +21,10 @@ class JiraCloneServices extends BaseServices {
     sgGetAllProjectApi = () => (
         this.get('Project/getAllProject')
     )
+    //2. Delete a project item
+    sgDeleteProjectItem = (projectId) => (
+        this.delete(`Project/deleteProject?projectId=${projectId}`)
+    )
 }
 
 export const jiraCloneServices = new JiraCloneServices();

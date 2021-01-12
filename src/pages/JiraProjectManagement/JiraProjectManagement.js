@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
+import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
 import { Table, Button, Space, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
@@ -105,7 +105,7 @@ export default function JiraProjectManagement(props) {
                     <Popconfirm
                         title="Are you sure to delete this project?"
                         onConfirm={() => {
-                            // dispatch(sgaDeleteProject(record.id));
+                            dispatch(sgaClickedYesDeleteButton(record.id));
                         }}
                         okText="Yes"
                         cancelText="No"
