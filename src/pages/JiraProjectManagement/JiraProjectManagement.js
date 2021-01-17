@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
-import { Table, Button, Space, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Button, Space, Tag, Avatar } from 'antd';
+import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
 import UpdateProjectForm from '../../components/JiraForms/UpdateProjectForm';
 
 export default function JiraProjectManagement(props) {
 
-    const {allProjectArr} = useSelector(state => state.JiraProjectManagementReducer);
+    const { allProjectArr } = useSelector(state => state.JiraProjectManagementReducer);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(sgaGetAllProjectApi());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [state, setState] = useState({
@@ -91,6 +91,23 @@ export default function JiraProjectManagement(props) {
             key: 'creator',
             render: (text, record, index) => (
                 <Tag color="orange">{record.creator.name}</Tag>
+            )
+        },
+        {
+            title: 'member',
+            dataIndex: 'creator',
+            key: 'creator',
+            render: (text, record, index) => (
+                <>
+                    <Avatar.Group maxCount={3} size="large" maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
+                        {record.members.map((mem, index) => ((
+                            <>
+                                <Avatar key={index} src={mem.avatar} />
+                            </>
+                        )))}
+                    </Avatar.Group>
+                    <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0 }} />} />
+                </>
             )
         },
         {
