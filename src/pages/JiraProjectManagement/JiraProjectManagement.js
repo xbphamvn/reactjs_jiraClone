@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
-import { Table, Button, Space, Tag, Avatar } from 'antd';
+import { Table, Button, Space, Tag, Avatar, Popover } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
@@ -106,7 +106,9 @@ export default function JiraProjectManagement(props) {
                             </>
                         )))}
                     </Avatar.Group>
-                    <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0 }} />} />
+                    <Popover placement="rightTop" title="Add member" content="def" trigger="click">
+                        <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0, cursor: 'pointer' }} />} />
+                    </Popover>
                 </>
             )
         },
