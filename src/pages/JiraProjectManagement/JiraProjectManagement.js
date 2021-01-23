@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaAddMemberToProject, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
+import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaAddMemberToProjectOnSearch, sgaAssignMemberToProject, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
 import { Table, Button, Space, Tag, Avatar, Popover, AutoComplete } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
@@ -22,6 +22,8 @@ export default function JiraProjectManagement(props) {
         filteredInfo: null,
         sortedInfo: null,
     });
+
+    const [value, setValue] = useState('');
 
     const handleChange = (pagination, filters, sorter) => {
         // console.log('Various parameters', pagination, filters, sorter);
@@ -106,9 +108,14 @@ export default function JiraProjectManagement(props) {
                     </Avatar.Group>
                     <Popover placement="rightTop" title="Add member" content={() => (
                         <AutoComplete style={{ width: '100%' }}
-                        onSearch={(value) => dispatch(sgaAddMemberToProject(value))}
+                        onSearch={(value) => dispatch(sgaAddMemberToProjectOnSearch(value))}
                         options={addMemberResArr?.map((item, index) => ({label: item.name, value: item.userId.toString()}))}
-                        onSelect={(value, option) => console.log(value, option)}
+                        value={value}
+                        onSelect={(value, option) => {
+                            dispatch(sgaAssignMemberToProject({projectId: record.id, userId: Number(value)}));
+                            setValue(option.label);
+                        }}
+                        onChange={(inputText) => setValue(inputText)}
                         />
                     )} trigger="click">
                         <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0, cursor: 'pointer' }} />} />

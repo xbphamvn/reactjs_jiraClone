@@ -26,8 +26,13 @@ class JiraCloneServices extends BaseServices {
         this.delete(`Project/deleteProject?projectId=${projectId}`)
     )
     //3. Add member to project
-    sgAddMemberToProject = (keyword) => (
+    //3.1 Get member data for onSearch
+    sgAddMemberToProjectOnSearch = (keyword) => (
         this.get(`Users/getUser?keyword=${keyword}`)
+    )
+    //3.2 Assign member to project
+    sgAssignMemberToProject = (assignData) => (
+        this.post(`Project/assignUserProject`, assignData)
     )
 }
 

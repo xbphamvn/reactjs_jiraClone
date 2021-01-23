@@ -23,8 +23,9 @@ export const NOTIFICATION_ANTD_SUCCESS = 'success';
 export const NOTIFICATION_ANTD_ERROR = 'error';
 export const NOTIFICATION_ANTD_INFO = 'info';
 export const NOTIFICATION_ANTD_WARNING = 'warning';
-//Notification messages
-export const NOTIFICATION_ANTD_MESSAGE_SUCCESS = 'Delete project success!';
-export const NOTIFICATION_ANTD_MESSAGE_INFO = 'For your information!';
-export const NOTIFICATION_ANTD_MESSAGE_WARNING = 'System warning!';
-export const NOTIFICATION_ANTD_MESSAGE_ERROR = 'Delete project fail!';
+//Notification delete status messages
+export const NOTIFICATION_ANTD_DELETE_MESSAGE_SUCCESS = 'Delete project success!';
+export const NOTIFICATION_ANTD_DELETE_MESSAGE_ERROR = 'Delete project fail!';
+//Notification assign member status messages
+export const NOTIFICATION_ANTD_ASSIGN_MEMBER_MESSAGE_SUCCESS = 'Assign member to project success!';
+export const NOTIFICATION_ANTD_ASSIGN_MEMBER_MESSAGE_ERROR = 'Assign member to project fail!';
