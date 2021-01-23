@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaAddMemberToProjectOnSearch, sgaAssignMemberToProject, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
 import { Table, Button, Space, Tag, Avatar, Popover, AutoComplete } from 'antd';
@@ -6,12 +6,15 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
 import UpdateProjectForm from '../../components/JiraForms/UpdateProjectForm';
+import JiraManagementRemoveUserProject from '../../components/JiraManagement/JiraManagementRemoveUserProject';
 
 export default function JiraProjectManagement(props) {
 
     const { allProjectArr, addMemberResArr } = useSelector(state => state.JiraProjectManagementReducer);
 
     const dispatch = useDispatch();
+
+    const searchRef = useRef(null);
 
     useEffect(() => {
         dispatch(sgaGetAllProjectApi());
@@ -103,19 +106,26 @@ export default function JiraProjectManagement(props) {
                 <>
                     <Avatar.Group maxCount={3} size="large" maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
                         {record.members.map((mem, index) => ((
-                            <Avatar key={index} src={mem.avatar} />
+                            <Popover placement="bottom" title={'Member list'} content={<JiraManagementRemoveUserProject record={record} member={mem} />} key={index}>
+                                <Avatar src={mem.avatar} />
+                            </Popover>
                         )))}
                     </Avatar.Group>
                     <Popover placement="rightTop" title="Add member" content={() => (
                         <AutoComplete style={{ width: '100%' }}
-                        onSearch={(value) => dispatch(sgaAddMemberToProjectOnSearch(value))}
-                        options={addMemberResArr?.map((item, index) => ({label: item.name, value: item.userId.toString()}))}
-                        value={value}
-                        onSelect={(value, option) => {
-                            dispatch(sgaAssignMemberToProject({projectId: record.id, userId: Number(value)}));
-                            setValue(option.label);
-                        }}
-                        onChange={(inputText) => setValue(inputText)}
+                            onSearch={(value) => {
+                                if (searchRef.current) {
+                                    clearTimeout(searchRef.current);
+                                }
+                                searchRef.current = setTimeout(() => { dispatch(sgaAddMemberToProjectOnSearch(value))}, 300);
+                            }}
+                            options={addMemberResArr?.map((item, index) => ({ label: item.name, value: item.userId.toString() }))}
+                            value={value}
+                            onSelect={(value, option) => {
+                                dispatch(sgaAssignMemberToProject({ projectId: record.id, userId: Number(value) }));
+                                setValue(option.label);
+                            }}
+                            onChange={(inputText) => setValue(inputText)}
                         />
                     )} trigger="click">
                         <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0, cursor: 'pointer' }} />} />

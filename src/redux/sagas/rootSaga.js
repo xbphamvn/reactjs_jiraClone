@@ -15,6 +15,7 @@ export function* rootSaga() {
         sgaProjectManagement.listenDeleteProjectApi(),
         sgaProjectManagement.listenOnSearchAddMemberToProject(),
         sgaProjectManagement.listenAssignMemberToProject(),
+        sgaProjectManagement.listenRemoveMemberOfProject(),
         //Update project after edited
         sgaUpdateProjectForm.listenSubmitBtnAfterEditedProject(),
     ])

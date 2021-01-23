@@ -34,6 +34,10 @@ class JiraCloneServices extends BaseServices {
     sgAssignMemberToProject = (assignData) => (
         this.post(`Project/assignUserProject`, assignData)
     )
+    //3.3 Remove a member of project
+    sgRemoveMemberOfProject = (removeData) => (
+        this.post(`Project/removeUserFromProject`, removeData)
+    )
 }
 
 export const jiraCloneServices = new JiraCloneServices();

@@ -3,7 +3,7 @@ import { displayNotification } from '../../../utils/notifications/notifications'
 import { jiraCloneServices } from '../../../services/JiraCloneServices/JiraCloneServices';
 import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_DELETE_MESSAGE_ERROR, NOTIFICATION_ANTD_DELETE_MESSAGE_SUCCESS, NOTIFICATION_ANTD_SUCCESS, NOTIFICATION_ANTD_ASSIGN_MEMBER_MESSAGE_ERROR, NOTIFICATION_ANTD_ASSIGN_MEMBER_MESSAGE_SUCCESS } from '../../../utils/constants/globalConsts';
 import { actGetAllProjectApi, actPushOnSearchResultToRedux, sgaGetAllProjectApi } from '../../actions/JiraCloneActions';
-import { SGA_ADD_MEMBER_TO_PROJECT_ON_SEARCH, SGA_ASSIGN_MEMBER_TO_PROJECT, SGA_CLICKED_YES_DELETE_BTN, SGA_MANAGEMENT_GET_ALL_PROJECT } from '../../constants/JiraCloneConsts';
+import { SGA_ADD_MEMBER_TO_PROJECT_ON_SEARCH, SGA_ASSIGN_MEMBER_TO_PROJECT, SGA_CLICKED_YES_DELETE_BTN, SGA_MANAGEMENT_GET_ALL_PROJECT, SGA_REMOVE_MEMBER_OF_PROJECT } from '../../constants/JiraCloneConsts';
 
 function* getAllProjectApi(action) {
     try {
@@ -78,4 +78,21 @@ function* assignMemberToProject(action) {
 
 export function* listenAssignMemberToProject() {
     yield takeLatest(SGA_ASSIGN_MEMBER_TO_PROJECT, assignMemberToProject);
+}
+//3. Remove a member of a project
+function* removeMemberOfProject(action) {
+    try {
+        const { status } = yield call(() => jiraCloneServices.sgRemoveMemberOfProject(action.removeData));
+        if (status === CODE_STATUS.SUCCESS) {
+            yield put(sgaGetAllProjectApi());
+        } else {
+            console.log('Something was wrong, for developer only!');
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export function* listenRemoveMemberOfProject() {
+    yield takeLatest(SGA_REMOVE_MEMBER_OF_PROJECT, removeMemberOfProject);
 }

@@ -2,7 +2,8 @@ import { ACT_PUSH_ONSEARCH_RESULT_ARR_TO_REDUX, ACT_MANAGEMENT_GET_ALL_PROJECT_A
 
 const initialState = {
     allProjectArr: [],
-    addMemberResArr: []
+    addMemberResArr: [],
+    projectMembers: []
 }
 
 export const JiraProjectManagementReducer = (state = initialState, action) => {
