@@ -2,8 +2,8 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { displayNotification } from '../../../utils/notifications/notifications';
 import { jiraCloneServices } from '../../../services/JiraCloneServices/JiraCloneServices';
 import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_MESSAGE_ERROR, NOTIFICATION_ANTD_MESSAGE_SUCCESS, NOTIFICATION_ANTD_SUCCESS } from '../../../utils/constants/globalConsts';
-import { actGetAllProjectApi, sgaGetAllProjectApi } from '../../actions/JiraCloneActions';
-import { SGA_CLICKED_YES_DELETE_BTN, SGA_MANAGEMENT_GET_ALL_PROJECT } from '../../constants/JiraCloneConsts';
+import { actGetAllProjectApi, actPushOnSearchResultToRedux, sgaGetAllProjectApi } from '../../actions/JiraCloneActions';
+import { SGA_ADD_MEMBER_TO_PROJECT, SGA_CLICKED_YES_DELETE_BTN, SGA_MANAGEMENT_GET_ALL_PROJECT } from '../../constants/JiraCloneConsts';
 
 function* getAllProjectApi(action) {
     try {
@@ -39,4 +39,22 @@ function* deleteProjectApi(action) {
 
 export function* listenDeleteProjectApi() {
     yield takeLatest(SGA_CLICKED_YES_DELETE_BTN, deleteProjectApi);
+}
+
+//Add member to project action
+function* addMemberToProject(action) {
+    try {
+        const {data, status} = yield call(() => jiraCloneServices.sgAddMemberToProject(action.keyword));
+        if (status === CODE_STATUS.SUCCESS) {
+            yield put(actPushOnSearchResultToRedux(data.content));
+        } else {
+            console.log('Something was wrong! For developer only!');
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export function* listenAddMemberToProject() {
+    yield takeLatest(SGA_ADD_MEMBER_TO_PROJECT, addMemberToProject);
 }

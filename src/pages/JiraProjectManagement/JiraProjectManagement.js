@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
-import { Table, Button, Space, Tag, Avatar, Popover } from 'antd';
+import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaAddMemberToProject, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
+import { Table, Button, Space, Tag, Avatar, Popover, AutoComplete } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 // import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
@@ -9,7 +9,7 @@ import UpdateProjectForm from '../../components/JiraForms/UpdateProjectForm';
 
 export default function JiraProjectManagement(props) {
 
-    const { allProjectArr } = useSelector(state => state.JiraProjectManagementReducer);
+    const { allProjectArr, addMemberResArr } = useSelector(state => state.JiraProjectManagementReducer);
 
     const dispatch = useDispatch();
 
@@ -101,12 +101,16 @@ export default function JiraProjectManagement(props) {
                 <>
                     <Avatar.Group maxCount={3} size="large" maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
                         {record.members.map((mem, index) => ((
-                            <>
-                                <Avatar key={index} src={mem.avatar} />
-                            </>
+                            <Avatar key={index} src={mem.avatar} />
                         )))}
                     </Avatar.Group>
-                    <Popover placement="rightTop" title="Add member" content="def" trigger="click">
+                    <Popover placement="rightTop" title="Add member" content={() => (
+                        <AutoComplete style={{ width: '100%' }}
+                        onSearch={(value) => dispatch(sgaAddMemberToProject(value))}
+                        options={addMemberResArr?.map((item, index) => ({label: item.name, value: item.userId.toString()}))}
+                        onSelect={(value, option) => console.log(value, option)}
+                        />
+                    )} trigger="click">
                         <Avatar icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: 0, cursor: 'pointer' }} />} />
                     </Popover>
                 </>

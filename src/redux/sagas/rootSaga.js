@@ -13,6 +13,7 @@ export function* rootSaga() {
         //Project management
         sgaProjectManagement.listenGetAllProjectApi(),
         sgaProjectManagement.listenDeleteProjectApi(),
+        sgaProjectManagement.listenAddMemberToProject(),
         //Update project after edited
         sgaUpdateProjectForm.listenSubmitBtnAfterEditedProject(),
     ])

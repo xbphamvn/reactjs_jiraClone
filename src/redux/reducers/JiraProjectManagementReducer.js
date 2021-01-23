@@ -1,7 +1,8 @@
-import { ACT_MANAGEMENT_GET_ALL_PROJECT_API } from "../constants/JiraCloneConsts";
+import { ACT_PUSH_ONSEARCH_RESULT_ARR_TO_REDUX, ACT_MANAGEMENT_GET_ALL_PROJECT_API } from "../constants/JiraCloneConsts";
 
 const initialState = {
-    allProjectArr: []
+    allProjectArr: [],
+    addMemberResArr: []
 }
 
 export const JiraProjectManagementReducer = (state = initialState, action) => {
@@ -9,6 +10,9 @@ export const JiraProjectManagementReducer = (state = initialState, action) => {
 
     case ACT_MANAGEMENT_GET_ALL_PROJECT_API:
         return { ...state, allProjectArr: action.allProjectArr };
+
+    case ACT_PUSH_ONSEARCH_RESULT_ARR_TO_REDUX:
+        return {...state, addMemberResArr: action.onSearchResultArr};
 
     default:
         return state;
