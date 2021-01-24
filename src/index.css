@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 /* Menu */
 .sidebarMenu {
     width: 256px;
@@ -47,5 +51,124 @@
 .options__item.sidebar_active, .options__item:hover {
     color: #0052cc;
     border-radius: 5px;
+    background-color: rgb(235, 236, 240);
+}
+
+/* Main content */
+.main {
+    /* margin-left: 320px; */
+    padding: 0;
+}
+
+.main__breadcrumb {
+    color: rgb(94, 108, 132);
+    margin: 0;
+}
+
+.main__username {
+    padding: 5px 0;
+    color: #172b4d;
+}
+
+/* Search and info */
+.main__search {
+    position: relative;
+}
+
+.main__search--icon {
+    position: absolute;
+    color:rgb(94, 108, 132);
+    top: 7px;
+    left: 10px;
+    font-size: 13px;
+}
+
+.main__search--input {
+    border: solid 1px rgb(223, 225, 230);
+    padding: 0px 7px 0px 32px;
+    border-radius: 3px;
+    color: rgb(23, 43, 77);
+    background: rgb(244, 245, 247);
+    transition: background 0.1s ease 0s;
+    width: 170px;
+    height: 32px;
+}
+
+.main__search--input:focus {
+    outline: none;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(76, 154, 255);
+    box-shadow: rgb(76, 154, 255) 0px 0px 0px 1px;
+}
+
+/* Info Avatar */
+.main__avatar {
+    margin-left: 30px;
+}
+
+.main__avatar--img {
+    height: 37px;
+    width: 37px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-top: -2px;
+    margin-left: -10px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .5s;
+}
+
+.main__avatar--img:hover {
+    transform: translateY(-5px);
+}
+
+/* Main options */
+.main__options {
+    margin: 0;
+    margin-left: 15px;
+    padding: 5px 7px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.main__options {
+    margin-bottom: 0;
+}
+
+.main__options:hover {
+    background: rgb(235, 236, 240);
+}
+
+/* Main project status */
+.main__project {
+    color: rgb(94, 108, 132);
+    font-size: 13px;
+    height: 100%;
+    padding: 13px 6px 17px;
+    border-radius: 3px;
+    background: rgb(244, 245, 247);
+}
+
+.main__project--item {
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 2px 0px;
+    transition: all 0.1s ease 0s;
+    text-align: justify;
+    cursor: pointer;
+    user-select: none;
+}
+
+.main__project--item a {
+    text-decoration: none;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.main__project--item:hover {
     background-color: rgb(235, 236, 240);
 }

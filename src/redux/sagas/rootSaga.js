@@ -3,6 +3,7 @@ import * as sgaUserLogin from './JiraCloneSaga/JiraLoginSaga';
 import * as sgaCreateProject from './JiraCloneSaga/JiraCreateProjectSaga';
 import * as sgaProjectManagement from './JiraCloneSaga/JiraProjectManagementSaga';
 import * as sgaUpdateProjectForm from './JiraCloneSaga/JiraComponentsSaga/UpdateProjectFormSaga';
+import * as sgaProjectDashboard from './JiraCloneSaga/JiraProjectDashboardSaga';
 
 export function* rootSaga() {
     yield all([
@@ -18,5 +19,7 @@ export function* rootSaga() {
         sgaProjectManagement.listenRemoveMemberOfProject(),
         //Update project after edited
         sgaUpdateProjectForm.listenSubmitBtnAfterEditedProject(),
+        //Project dashboard
+        sgaProjectDashboard.listenGetProjectDetailApi(),
     ])
 }

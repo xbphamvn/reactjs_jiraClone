@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { JiraCreateProjectReducer } from './reducers/JiraCreateProjectReducer';
+import { JiraDashboardReducer } from './reducers/JiraDashboardReducer';
 import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementReducer';
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
@@ -21,6 +22,8 @@ const rootReducer = combineReducers({
     //HOC Drawer
     JiraHOCDrawerReducer,
     UpdateProjectFormReducer,
+    //PROJECT DASHBOARD
+    JiraDashboardReducer,
 });
 
 export const store = createStore(

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actClickEditBtnProjectItem, actPushProjectItemDataToRedux, sgaAddMemberToProjectOnSearch, sgaAssignMemberToProject, sgaClickedYesDeleteButton, sgaGetAllProjectApi } from '../../redux/actions/JiraCloneActions';
 import { Table, Button, Space, Tag, Avatar, Popover, AutoComplete } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-// import UpdateProjectForm from '../../../components/Forms/UpdateProjectForm/UpdateProjectForm';
 import { Popconfirm } from 'antd';
 import UpdateProjectForm from '../../components/JiraForms/UpdateProjectForm';
 import JiraManagementRemoveUserProject from '../../components/JiraManagement/JiraManagementRemoveUserProject';
+import { NavLink } from 'react-router-dom';
+import { JIRA_PATH_PROJECT_MANAGEMENT_PROJECT_ITEM_LINK } from '../../utils/constants/globalConsts';
 
 export default function JiraProjectManagement(props) {
 
@@ -71,20 +72,14 @@ export default function JiraProjectManagement(props) {
         },
         {
             title: 'projectName',
-            dataIndex: 'projectName',
             key: 'projectName',
+            render: (text, record, index) => ((
+                <NavLink to={JIRA_PATH_PROJECT_MANAGEMENT_PROJECT_ITEM_LINK + record.id}>{record.projectName}</NavLink>
+            )),
             sorter: (a, b) => a.projectName.toLowerCase() < b.projectName.toLowerCase(),
             sortDirections: ['descend']
             // ellipsis: true,
         },
-        // {
-        //     title: 'description',
-        //     dataIndex: 'description',
-        //     key: 'description',
-        //     render: (text, record, index) => {
-        //         return parse(record.description);
-        //     }
-        // },
         {
             title: 'categoryName',
             dataIndex: 'categoryName',
