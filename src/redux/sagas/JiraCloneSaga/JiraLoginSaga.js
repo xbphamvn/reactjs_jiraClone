@@ -7,11 +7,11 @@ import { SGA_JIRA_USER_LOGIN } from '../../constants/JiraCloneConsts';
 
 function* userLogin(action) {
 
-    const {history} = yield select(state => state.JiraPushHistoryToReduxReducer);
+    const { history } = yield select(state => state.JiraPushHistoryToReduxReducer);
 
     yield put(actDisplayLoadingOverlay());
     try {
-        const {data, status} = yield call(() => jiraCloneServices.sgUserLogin(action.userData));
+        const { data, status } = yield call(() => jiraCloneServices.sgUserLogin(action.userData));
         if (status === CODE_STATUS.SUCCESS) {
             localStorage.setItem(LOCALSTORAGE_TOKEN_NAME, data.content.accessToken);
             localStorage.setItem(LOCALSTORAGE_USER_DATA_NAME, JSON.stringify(data.content));

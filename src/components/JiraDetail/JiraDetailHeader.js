@@ -6,8 +6,8 @@ export default function JiraDetailHeader(props) {
 
     return (
         <>
-            <p className="main__breadcrumb">Projects / singularity 1.0 / Kanban Board</p>
-            <h4 className="main__username">Kanban board</h4>
+            <p className="main__breadcrumb">Projects / Project detail / {projectDetail.projectName}</p>
+            <h4 className="main__username">{projectDetail.projectName}</h4>
             <div className="py-2 d-flex">
                 <div className="main__search">
                     <div className="main__search--icon">

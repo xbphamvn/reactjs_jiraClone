@@ -5,7 +5,7 @@ import { actHideDrawerJiraHOCDrawer } from '../../redux/actions/JiraCloneActions
 
 export default function JiraHOCDrawer(props) {
 
-    const { visibleDrawer, innerComponentDrawer, callBackFuncDrawer } = useSelector(state => state.JiraHOCDrawerReducer);
+    const { visibleDrawer, innerComponentDrawer, callBackFuncDrawer, title } = useSelector(state => state.JiraHOCDrawerReducer);
 
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ export default function JiraHOCDrawer(props) {
     return (
         <>
             <Drawer
-                title=""
+                title={title}
                 width={'50%'}
                 onClose={onClose}
                 visible={visibleDrawer}
