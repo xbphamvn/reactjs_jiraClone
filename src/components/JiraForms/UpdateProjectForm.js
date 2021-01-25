@@ -30,7 +30,7 @@ function UpdateProjectForm(props) {
     }
 
     return (
-        <form className="container-fluid p-1" onSubmit={handleSubmit} scrolllocker="none">
+        <form className="container-fluid p-1" onSubmit={handleSubmit}>
             <div className="row mt-5">
                 <div className="mb-3 col-4">
                     <label className="fw-bold">Project Id</label>

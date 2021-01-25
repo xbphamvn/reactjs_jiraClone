@@ -57,6 +57,14 @@ export const actProjectDashboardGetProjectDetail = (projectDetail) => ({
     projectDetail
 })
 
+//SIDEBAR CREATE NEW TASK
+//1. Click create new task button
+export const actClickCreateNewTaskBtn = (Component) => ({
+    type: '',
+    Component,
+    title: ''
+})
+
 //Saga actions-----------------------------
 //Login
 export const sgaJiraUserLogin = (userData) => ({

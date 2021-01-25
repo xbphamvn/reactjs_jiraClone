@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { Menu, Layout } from 'antd';
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAGEMENT } from '../../utils/constants/globalConsts';
+import { useDispatch } from 'react-redux';
 
 export default function MenuSideBar(props) {
+
+    const dispatch = useDispatch();
 
     const [state, setState] = useState({
         collapsed: true,
@@ -18,8 +21,8 @@ export default function MenuSideBar(props) {
         <>
             <Layout.Sider theme="dark" width={200} collapsedWidth={64} collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
                 <Menu theme="dark" style={{ marginTop: 50 }} mode="inline">
-                    <Menu.Item key="1" icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: -10 }} />}>
-                        <NavLink to="/createproject">Create Project</NavLink>
+                    <Menu.Item key="1" icon={<PlusOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: -10 }} />} onClick={() => }>
+                        Create New Task
                     </Menu.Item>
                     <Menu.Item key="2" icon={<SearchOutlined style={{ fontSize: 20, verticalAlign: 0, marginLeft: -10 }} />}>
                         Search
