@@ -9,7 +9,7 @@ export const ACT_CREATE_GET_PROJECT_CATEGORIES_API = 'ACT_CREATE_GET_PROJECT_CAT
 export const ACT_MANAGEMENT_GET_ALL_PROJECT_API = 'ACT_MANAGEMENT_GET_ALL_PROJECT_API';
 //2. Click edit button
 export const ACT_EDIT_BTN_MANAGEMENT_PROJECT_ITEM = 'ACT_EDIT_BTN_MANAGEMENT_PROJECT_ITEM';
-export const ACT_EDIT_BTN_MANAGEMENT_ACTION_TITLE = 'Update project detail';
+export const ACT_EDIT_BTN_MANAGEMENT_ACTION_TITLE = 'Update project detail!';
 //3. Update form (higher order component of drawer) actions
 export const ACT_PUSH_PROJECT_ITEM_DATA_TO_REDUX = 'ACT_PUSH_PROJECT_ITEM_DATA_TO_REDUX';
 //4. Add member to project
@@ -22,6 +22,11 @@ export const ACT_SET_SUBMIT_BTN_JIRA_HOC_DRAWER = 'ACT_SET_SUBMIT_BTN_JIRA_HOC_D
 
 //PROJECT DASHBOARD ACTIONS
 export const ACT_PROJECT_DASHBOARD_GET_PROJECT_DETAIL = 'ACT_PROJECT_DASHBOARD_GET_PROJECT_DETAIL';
+
+//MENU BAR
+//1. Create new task button
+export const ACT_MENUBAR_CREATE_NEW_TASK_BTN = 'ACT_MENUBAR_CREATE_NEW_TASK_BTN';
+export const ACT_MENUBAR_CREATE_NEW_TASK_TITLE = 'Create new task!';
 
 //Saga actions-------------------------------------------------
 //Login
