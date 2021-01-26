@@ -4,6 +4,7 @@ import * as sgaCreateProject from './JiraCloneSaga/JiraCreateProjectSaga';
 import * as sgaProjectManagement from './JiraCloneSaga/JiraProjectManagementSaga';
 import * as sgaUpdateProjectForm from './JiraCloneSaga/JiraComponentsSaga/UpdateProjectFormSaga';
 import * as sgaProjectDashboard from './JiraCloneSaga/JiraProjectDashboardSaga';
+import * as sgaCreateNewTask from './JiraCloneSaga/JiraComponentsSaga/CreateNewTaskFormSaga';
 
 export function* rootSaga() {
     yield all([
@@ -21,5 +22,10 @@ export function* rootSaga() {
         sgaUpdateProjectForm.listenSubmitBtnAfterEditedProject(),
         //Project dashboard
         sgaProjectDashboard.listenGetProjectDetailApi(),
+        //Create new task
+        sgaCreateNewTask.listenCreateTaskGetAllPriorityType(),
+        sgaCreateNewTask.listenCreateTaskGetAllProject(),
+        sgaCreateNewTask.listenCreateTaskGetAllTaskType(),
+        sgaCreateNewTask.listenCreateTaskGetAllTaskStatus(),
     ])
 }

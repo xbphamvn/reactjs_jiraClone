@@ -6,6 +6,7 @@ import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementRe
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
 import { LoadingReducer } from './reducers/LoadingReducer';
+import { CreateNewTaskFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/CreateNewTaskFormReducer';
 import { UpdateProjectFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/UpdateProjectFormReducer';
 import { JiraHOCDrawerReducer } from './reducers/ReducersHOC/JiraHOCDrawerReducer';
 import { rootSaga } from './sagas/rootSaga';
@@ -21,7 +22,10 @@ const rootReducer = combineReducers({
     JiraProjectManagementReducer,
     //HOC Drawer
     JiraHOCDrawerReducer,
+    //Update project after edit
     UpdateProjectFormReducer,
+    //Create new task
+    CreateNewTaskFormReducer,
     //PROJECT DASHBOARD
     JiraDashboardReducer,
 });
