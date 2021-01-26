@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useDispatch } from 'react-redux';
 import { actSetSubmitBtnJiraHOCDrawer } from '../../redux/actions/JiraCloneActions';
-import { Slider, Select } from 'antd';
+import { Slider } from 'antd';
 
 export default function CreateNewTaskForm(props) {
+
+    const [taskTime, setTaskTime] = useState({
+        timeTrackingSpent: 0,
+        timeTrackingRemaining: 0
+    })
 
     const dispatch = useDispatch();
 
@@ -24,7 +29,7 @@ export default function CreateNewTaskForm(props) {
                     </select>
                 </div>
                 <div className="mb-2 col-4">
-                    <label className="form-label">Belong to project</label>
+                    <label className="form-label">Project ID</label>
                     <select name="projectId" className="form-select">
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -43,11 +48,28 @@ export default function CreateNewTaskForm(props) {
                     <label className="form-label">Status ID</label>
                     <input className="form-control" name="statusId" type="text" />
                 </div>
-                <div className="mb-2 col-6">
-                    <Slider defaultValue={30} />
+                <div className="mb-2 col-5 pt-5">
+                    <label className="form-label">ORIGINAL ESTIMATE (HOURS)</label>
+                    <input className="form-control w-50" name="originalEstimate" type="number" min="0" defaultValue="0" />
                 </div>
-                <div className="mb-2 col-6">
-                    <Slider defaultValue={30} />
+                <div className="my-2 col-7">
+                    <Slider value={taskTime.timeTrackingSpent} max={taskTime.timeTrackingSpent + taskTime.timeTrackingRemaining} className="mb-0" />
+                    <div className="row container-fluid px-0">
+                        <div className="col-6 ps-4">
+                            <p>{`${taskTime.timeTrackingSpent}`}h logged</p>
+                        </div>
+                        <div className="col-6 text-end">
+                            <p>{taskTime.timeTrackingRemaining}h estimated</p>
+                        </div>
+                        <div className="col-5 p-0">
+                            <p className="mb-0">Time spent</p>
+                            <input name="timeTrackingSpent" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" style={{ border: 'solid 2px #999', borderRadius: 5, padding: '2px 7px', width: '60%' }} />
+                        </div>
+                        <div className="col-7 p-0 text-end">
+                            <p className="mb-0">Time remaining</p>
+                            <input name="timeTrackingRemaining" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" style={{ border: 'solid 2px #999', borderRadius: 5, padding: '2px 7px', width: '50%' }} />
+                        </div>
+                    </div>
                 </div>
                 <div className="mb-1">
                     <label>Description</label>
@@ -55,7 +77,7 @@ export default function CreateNewTaskForm(props) {
                     <Editor
                         name="description"
                         init={{
-                            height: 120,
+                            height: 130,
                             menubar: false,
                             plugins: [
                                 'advlist autolink lists link image charmap print preview anchor',
