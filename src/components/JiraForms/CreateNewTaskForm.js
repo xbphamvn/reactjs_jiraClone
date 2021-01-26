@@ -48,26 +48,32 @@ export default function CreateNewTaskForm(props) {
                     <label className="form-label">Status ID</label>
                     <input className="form-control" name="statusId" type="text" />
                 </div>
-                <div className="mb-2 col-5 pt-5">
-                    <label className="form-label">ORIGINAL ESTIMATE (HOURS)</label>
-                    <input className="form-control w-50" name="originalEstimate" type="number" min="0" defaultValue="0" />
+                <div className="col-5">
+                    <div className="mb-2">
+                        <label className="form-label">Status ID</label>
+                        <input className="form-control" name="statusId" type="text" />
+                    </div>
+                    <div className="mb-2">
+                        <label className="form-label">ORIGINAL ESTIMATE (HOURS)</label>
+                        <input className="form-control w-50 text-end" name="originalEstimate" type="number" min="0" defaultValue="0" />
+                    </div>
                 </div>
-                <div className="my-2 col-7">
+                <div className="mb-2 mt-3 col-7">
                     <Slider value={taskTime.timeTrackingSpent} max={taskTime.timeTrackingSpent + taskTime.timeTrackingRemaining} className="mb-0" />
                     <div className="row container-fluid px-0">
                         <div className="col-6 ps-4">
-                            <p>{`${taskTime.timeTrackingSpent}`}h logged</p>
+                            <p>{taskTime.timeTrackingSpent}h logged</p>
                         </div>
                         <div className="col-6 text-end">
                             <p>{taskTime.timeTrackingRemaining}h estimated</p>
                         </div>
-                        <div className="col-5 p-0">
-                            <p className="mb-0">Time spent</p>
-                            <input name="timeTrackingSpent" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" style={{ border: 'solid 2px #999', borderRadius: 5, padding: '2px 7px', width: '60%' }} />
+                        <div className="col-6 mt-1">
+                            <p className="mb-2">Time spent</p>
+                            <input className="form-control w-50 text-end" name="timeTrackingSpent" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" />
                         </div>
-                        <div className="col-7 p-0 text-end">
-                            <p className="mb-0">Time remaining</p>
-                            <input name="timeTrackingRemaining" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" style={{ border: 'solid 2px #999', borderRadius: 5, padding: '2px 7px', width: '50%' }} />
+                        <div className="col-6 p-0 text-end mt-1">
+                            <p className="mb-2">Time remaining</p>
+                            <input className="form-control w-50 text-end d-inline" name="timeTrackingRemaining" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" />
                         </div>
                     </div>
                 </div>
