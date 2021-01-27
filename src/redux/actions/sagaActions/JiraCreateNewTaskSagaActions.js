@@ -1,4 +1,4 @@
-import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_PRIORITY_TYPES_API, SGA_GET_ALL_PROJECTS_ARR_API, SGA_GET_ALL_TASK_STATUS_API, SGA_GET_ALL_TASK_TYPES_API } from "../../constants/JiraCreateNewTaskConsts";
+import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_MEMBER_BY_PROJECT_ID, SGA_GET_ALL_PRIORITY_TYPES_API, SGA_GET_ALL_PROJECTS_ARR_API, SGA_GET_ALL_TASK_STATUS_API, SGA_GET_ALL_TASK_TYPES_API } from "../../constants/JiraCreateNewTaskConsts";
 
 export const sgaCreateTaskGetAllPriorityType = () => ({
     type: SGA_GET_ALL_PRIORITY_TYPES_API
@@ -16,7 +16,12 @@ export const sgaCreateTaskGetAllTaskStatus = () => ({
     type: SGA_GET_ALL_TASK_STATUS_API
 });
 
+export const sgaCreatTaskGetMembersByProjectId = (projectId) => ({
+    type: SGA_GET_ALL_MEMBER_BY_PROJECT_ID,
+    projectId
+});
+
 export const sgaCreateNewTaskApi = (values) => ({
     type: SGA_CREATE_NEW_TASK_SUBMIT_BTN,
     values
-})
+});

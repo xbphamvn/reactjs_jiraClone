@@ -8,9 +8,8 @@ import { SGA_DASHBOARD_GET_PROJECT_DETAIL } from '../../constants/JiraCloneConst
 function* getProjectDetailApi(action) {
     yield put(actDisplayLoadingOverlay());
     try {
-        const {data, status} = yield call(() => jiraDashboardServices.sgGetProjectDetailApi(action.projectId));
+        const { data, status} = yield call(() => jiraDashboardServices.sgGetProjectDetailApi(action.projectId));
         if (status === CODE_STATUS.SUCCESS) {
-            console.log(data);
             yield put(actProjectDashboardGetProjectDetail(data.content))
         } else {
             console.log('Something was wrong! For developer only!');

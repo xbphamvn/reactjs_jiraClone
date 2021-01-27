@@ -1,9 +1,11 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, delay, put, takeLatest } from 'redux-saga/effects';
 import { jiraCreateNewTaskServices } from '../../../../services/JiraComponentsServices/JiraCreateNewTaskServices';
-import { CODE_STATUS } from '../../../../utils/constants/globalConsts';
-import { actSetAllPriorityTypesToRedux, actSetAllProjectsArrToRedux, actSetAllTaskStatusToRedux, actSetAllTaskTypesToRedux } from '../../../actions/normalActions/JiraCreateNewTaskActions';
-import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_PRIORITY_TYPES_API } from "../../../constants/JiraCreateNewTaskConsts";
-
+import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_SUCCESS } from '../../../../utils/constants/globalConsts';
+import { displayNotification } from '../../../../utils/notifications/notifications';
+import { actHideDrawerJiraHOCDrawer } from '../../../actions/JiraCloneActions';
+import { actDisplayLoadingOverlay, actHideLoadingOverlay } from '../../../actions/LoadingActions';
+import { actSetAllMemberByProjectIdToRedux, actSetAllPriorityTypesToRedux, actSetAllProjectsArrToRedux, actSetAllTaskStatusToRedux, actSetAllTaskTypesToRedux } from '../../../actions/normalActions/JiraCreateNewTaskActions';
+import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_MEMBER_BY_PROJECT_ID, SGA_GET_ALL_PRIORITY_TYPES_API } from "../../../constants/JiraCreateNewTaskConsts";
 
 //Get all priority types
 function* createTaskGetAllPriorityType(action) {
@@ -77,21 +79,46 @@ export function* listenCreateTaskGetAllTaskStatus() {
     yield takeLatest(SGA_GET_ALL_PRIORITY_TYPES_API, createTaskGetAllTaskStatus);
 }
 
+//Get all member by project ID
+function* createTaskGetAllMemberByProjectId(action) {
+    try {
+        const { data, status } = yield call(() => jiraCreateNewTaskServices.sgCreateTaskGetAllMemberByProjectId(action.projectId));
+        if (status === CODE_STATUS.SUCCESS) {
+            yield put(actSetAllMemberByProjectIdToRedux(data.content));
+        } else {
+            console.log('Something was wrong! For developer only!');
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export function* listenCreateTaskGetAllMemberByProjectId() {
+    yield takeLatest(SGA_GET_ALL_MEMBER_BY_PROJECT_ID, createTaskGetAllMemberByProjectId);
+}
+
 //Click submit button to create new task
 function* createTaskClickSubmitBtn(action) {
 
     console.log(action);
 
-    // try {
-    //     const {data, status} = yield call(jiraCreateNewTaskServices.sgCreateTaskGetAllStatus);
-    //     if (status === CODE_STATUS.SUCCESS) {
-    //         yield put(actSetAllTaskStatusToRedux(data.content));
-    //     } else {
-    //         console.log('Something was wrong! For developer only!');
-    //     }
-    // } catch (err) {
-    //     console.log(err);
-    // }
+    yield put(actDisplayLoadingOverlay());
+
+    try {
+        const { status } = yield call(() => jiraCreateNewTaskServices.sgCreateTaskClickSubmitBtn(action.values));
+        if (status === CODE_STATUS.SUCCESS) {
+            displayNotification(NOTIFICATION_ANTD_SUCCESS, 'Task created!', 'Chúc mừng!');
+        } else {
+            console.log('Something was wrong! For developer only!');
+            displayNotification(NOTIFICATION_ANTD_ERROR, 'Task did not create!', 'Check again!');
+        }
+    } catch (err) {
+        console.log(err);
+        displayNotification(NOTIFICATION_ANTD_ERROR, 'Task did not create!', 'Check again!');
+    }
+    yield put(actHideDrawerJiraHOCDrawer());
+    yield delay(500);
+    yield put(actHideLoadingOverlay());
 }
 
 export function* listenCreateTaskClickSubmitBtn() {

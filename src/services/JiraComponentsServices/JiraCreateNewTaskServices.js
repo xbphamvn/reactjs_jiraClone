@@ -11,7 +11,9 @@ class JiraCreateNewTaskServices extends BaseServices {
     //4. Get all task status
     sgCreateTaskGetAllStatus = () => this.get('Status/getAll');
     //5. Get all members of project - usefulless because already get all projects
-    // sgCreateGetAllProjectMembers = (projectId) => this.get(`Users/getUserByProjectId?idProject=${projectId}`);
+    sgCreateTaskGetAllMemberByProjectId = (projectId) => this.get(`Users/getUserByProjectId?idProject=${projectId}`);
+    //6. Click submit create task button
+    sgCreateTaskClickSubmitBtn = (taskData) => this.post('Project/createTask', taskData);
 }
 
 export const jiraCreateNewTaskServices = new JiraCreateNewTaskServices();

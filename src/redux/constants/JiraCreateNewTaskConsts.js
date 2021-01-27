@@ -7,6 +7,8 @@ export const ACT_SET_ALL_PROJECTS_ARR_TO_REDUX = 'ACT_SET_ALL_PROJECTS_ARR_TO_RE
 export const ACT_SET_ALL_TASK_TYPES_TO_REDUX = 'ACT_SET_ALL_TASK_TYPES_TO_REDUX';
 //4. Get all task status
 export const ACT_SET_ALL_TASK_STATUS_TO_REDUX = 'ACT_SET_ALL_TASK_STATUS_TO_REDUX';
+//4. Get all task status
+export const ACT_SET_ALL_MEMBER_BY_PROJECT_ID_TO_REDUX = 'ACT_SET_ALL_MEMBER_BY_PROJECT_ID_TO_REDUX';
 
 //SAGA ACTIONS-----------------------------------------------------------------------
 //GET BACKEND DATA TO CREATE NEW TASK
@@ -18,5 +20,7 @@ export const SGA_GET_ALL_PROJECTS_ARR_API = 'SGA_GET_ALL_PROJECTS_ARR_API';
 export const SGA_GET_ALL_TASK_TYPES_API = 'SGA_GET_ALL_TASK_TYPES_API';
 //4. Get all task status
 export const SGA_GET_ALL_TASK_STATUS_API = 'SGA_GET_ALL_TASK_STATUS_API';
+//5. Get all member by project ID
+export const SGA_GET_ALL_MEMBER_BY_PROJECT_ID = 'SGA_GET_ALL_MEMBER_BY_PROJECT_ID';
 //5. Submit button action saga
 export const SGA_CREATE_NEW_TASK_SUBMIT_BTN = 'SGA_CREATE_NEW_TASK_SUBMIT_BTN';
