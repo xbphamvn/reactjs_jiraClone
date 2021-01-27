@@ -23,6 +23,6 @@ export const CreateNewTaskFormReducer = (state = initialState, action) => {
             return { ...state, taskStatusArr: action.taskStatusArr };
 
         default:
-            return state
+            return state;
     }
 }

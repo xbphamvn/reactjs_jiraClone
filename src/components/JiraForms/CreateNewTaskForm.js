@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { Slider, Select } from 'antd';
 import { actSetSubmitBtnJiraHOCDrawer } from '../../redux/actions/JiraCloneActions';
-import { sgaCreateTaskGetAllPriorityType, sgaCreateTaskGetAllProject, sgaCreateTaskGetAllTaskStatus, sgaCreateTaskGetAllTaskType } from '../../redux/actions/sagaActions/JiraCreateNewTaskSagaActions';
+import { sgaCreateNewTaskApi, sgaCreateTaskGetAllPriorityType, sgaCreateTaskGetAllProject, sgaCreateTaskGetAllTaskStatus, sgaCreateTaskGetAllTaskType } from '../../redux/actions/sagaActions/JiraCreateNewTaskSagaActions';
 import { withFormik } from 'formik';
 
 const CreateNewTaskForm = (props) => {
@@ -15,18 +15,6 @@ const CreateNewTaskForm = (props) => {
 
     const dispatch = useDispatch();
 
-    const {
-        values,
-        touched,
-        errors,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        setFieldValue
-    } = props;
-
-    console.log(values);
-
     useEffect(() => {
         dispatch(sgaCreateTaskGetAllPriorityType());
         dispatch(sgaCreateTaskGetAllProject());
@@ -37,6 +25,22 @@ const CreateNewTaskForm = (props) => {
     }, []);
 
     const { priorityArr, projectArr, taskTypeArr, taskStatusArr } = useSelector(state => state.CreateNewTaskFormReducer);
+
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        setFieldValue
+    } = props;
+
+    // console.log(values);
+
+    const handleEditorChange = (content, editor) => {
+        setFieldValue('description', content);
+    }
 
     return (
         <form className="container-fluid" onSubmit={handleSubmit}>
@@ -135,26 +139,29 @@ const CreateNewTaskForm = (props) => {
                             toolbar:
                                 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
                         }}
-                        onEditorChange=""
+                        onEditorChange={handleEditorChange}
                     />
                 </div>
             </div>
+            <button type="submit" onSubmit={handleSubmit}>Submit</button>
         </form>
     )
 }
 
 const CreateNewTaskWithFormik = withFormik({
-    mapPropsToValues: () => ({
+    enableReinitialize: true,
+    mapPropsToValues: (props) => ({
         taskName: '',
-        projectId: '',
-        statusId: '',
-        typeId: '',
-        priorityId: '',
+        projectId: props.projectArr[0]?.id,
+        statusId: props.taskStatusArr[0]?.statusId,
+        typeId: props.taskTypeArr[0]?.id,
+        priorityId: props.priorityArr[0]?.priorityId,
         listUserAsign: '',
         originalEstimate: '',
-        timeTrackingSpent: '',
-        timeTrackingRemaining: '',
-     }),
+        timeTrackingSpent: 0,
+        timeTrackingRemaining: 0,
+        description: ''
+    }),
 
     // Custom sync validation
     validate: values => {
@@ -168,15 +175,18 @@ const CreateNewTaskWithFormik = withFormik({
     },
 
     handleSubmit: (values, { setSubmitting, props }) => {
-        console.log('123 Create new task!');
-        console.log('123 Create new task!');
+        console.log('123');
+        props.dispatch(sgaCreateNewTaskApi(values));
     },
 
     displayName: 'Create New Task Form',
 })(CreateNewTaskForm);
 
 const mapStateToProps = (state) => ({
-    //
+    priorityArr: state.CreateNewTaskFormReducer.priorityArr,
+    projectArr: state.CreateNewTaskFormReducer.projectArr,
+    taskTypeArr: state.CreateNewTaskFormReducer.taskTypeArr,
+    taskStatusArr: state.CreateNewTaskFormReducer.taskStatusArr,
 })
 
 export default connect(mapStateToProps)(CreateNewTaskWithFormik);

@@ -27,5 +27,6 @@ export function* rootSaga() {
         sgaCreateNewTask.listenCreateTaskGetAllProject(),
         sgaCreateNewTask.listenCreateTaskGetAllTaskType(),
         sgaCreateNewTask.listenCreateTaskGetAllTaskStatus(),
+        sgaCreateNewTask.listenCreateTaskClickSubmitBtn(),
     ])
 }
