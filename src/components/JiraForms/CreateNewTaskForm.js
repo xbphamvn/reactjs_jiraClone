@@ -22,6 +22,7 @@ const CreateNewTaskForm = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
+        setFieldValue
     } = props;
 
     console.log(values);
@@ -42,13 +43,14 @@ const CreateNewTaskForm = (props) => {
             <div className="row">
                 <div className="mb-2 col-6">
                     <label className="form-label fw-bold">Task name</label>
+                    {errors.taskName && touched.taskName && <div className="text-danger" id="feedback">{errors.taskName}</div>}
                     <input className="form-control" name="taskName" type="text" onChange={handleChange} />
                 </div>
                 <div className="mb-2 col-6">
                     <label className="form-label fw-bold">Project ID</label>
                     <select name="projectId" className="form-select" onChange={(e) => {
                         //Dispatch lên theo e.target.value để get user by projectid
-                        //setFieldValue cho projectId
+                        setFieldValue('projectId', e.currentTarget.value);
                     }}>
                         {projectArr.map((item, index) => <option value={item.id} data-members={item.members} key={index}>{item.projectName}</option>)}
                     </select>
@@ -76,6 +78,7 @@ const CreateNewTaskForm = (props) => {
                         <label className="form-label fw-bold">Assign members</label>
                         <Select
                             mode="multiple"
+                            name="listUserAsign"
                             allowClear
                             options={projectArr[0]?.members.map((item, index) => ({ label: item.name, value: item.userId }))}
                             style={{ width: '100%' }}
@@ -102,17 +105,23 @@ const CreateNewTaskForm = (props) => {
                         </div>
                         <div className="col-6 mt-1">
                             <p className="mb-2">Time spent</p>
-                            <input className="form-control w-75 text-end" name="timeTrackingSpent" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" />
+                            <input className="form-control w-75 text-end" name="timeTrackingSpent" type="number" min="0" onChange={(e) => {
+                                setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) });
+                                setFieldValue('timeTrackingSpent', e.currentTarget.value);
+                            }} defaultValue="0" />
                         </div>
                         <div className="col-6 p-0 text-end mt-1">
                             <p className="mb-2">Time remaining</p>
-                            <input className="form-control w-75 text-end d-inline" name="timeTrackingRemaining" type="number" min="0" onChange={(e) => setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) })} defaultValue="0" />
+                            <input className="form-control w-75 text-end d-inline" name="timeTrackingRemaining" type="number" min="0" onChange={(e) => {
+                                setTaskTime({ ...taskTime, [e.currentTarget.name]: Number(e.currentTarget.value) });
+                                setFieldValue('timeTrackingRemaining', e.currentTarget.value);
+                            }} defaultValue="0" />
                         </div>
                     </div>
                 </div>
                 <div className="mb-1">
                     <label className="form-label fw-bold">Description</label>
-                    {/* {errors.description && touched.description && <div className="text-danger" id="feedback">{errors.description}</div>} */}
+                    {errors.description && touched.description && <div className="text-danger" id="feedback">{errors.description}</div>}
                     <Editor
                         name="description"
                         init={{
@@ -141,7 +150,10 @@ const CreateNewTaskWithFormik = withFormik({
         statusId: '',
         typeId: '',
         priorityId: '',
-        
+        listUserAsign: '',
+        originalEstimate: '',
+        timeTrackingSpent: '',
+        timeTrackingRemaining: '',
      }),
 
     // Custom sync validation
