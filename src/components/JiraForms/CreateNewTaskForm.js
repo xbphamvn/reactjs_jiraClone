@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { Slider, Select } from 'antd';
 import { actSetSubmitBtnJiraHOCDrawer } from '../../redux/actions/JiraCloneActions';
 import { sgaCreateTaskGetAllPriorityType, sgaCreateTaskGetAllProject, sgaCreateTaskGetAllTaskStatus, sgaCreateTaskGetAllTaskType } from '../../redux/actions/sagaActions/JiraCreateNewTaskSagaActions';
+import { withFormik } from 'formik';
 
-export default function CreateNewTaskForm(props) {
+const CreateNewTaskForm = (props) => {
 
     const [taskTime, setTaskTime] = useState({
         timeTrackingSpent: 0,
@@ -14,23 +15,34 @@ export default function CreateNewTaskForm(props) {
 
     const dispatch = useDispatch();
 
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+    } = props;
+
+    console.log(values);
+
     useEffect(() => {
         dispatch(sgaCreateTaskGetAllPriorityType());
         dispatch(sgaCreateTaskGetAllProject());
         dispatch(sgaCreateTaskGetAllTaskType());
         dispatch(sgaCreateTaskGetAllTaskStatus());
-        dispatch(actSetSubmitBtnJiraHOCDrawer(() => alert('Call back ok!')));
+        dispatch(actSetSubmitBtnJiraHOCDrawer(handleSubmit));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const { priorityArr, projectArr, taskTypeArr, taskStatusArr } = useSelector(state => state.CreateNewTaskFormReducer);
 
     return (
-        <form className="container-fluid">
+        <form className="container-fluid" onSubmit={handleSubmit}>
             <div className="row">
                 <div className="mb-2 col-6">
                     <label className="form-label fw-bold">Task name</label>
-                    <input className="form-control" name="taskName" type="text" />
+                    <input className="form-control" name="taskName" type="text" onChange={handleChange} />
                 </div>
                 <div className="mb-2 col-6">
                     <label className="form-label fw-bold">Project ID</label>
@@ -43,19 +55,19 @@ export default function CreateNewTaskForm(props) {
                 </div>
                 <div className="mb-2 col-6">
                     <label className="form-label fw-bold">Status ID</label>
-                    <select name="statusId" className="form-select">
+                    <select name="statusId" className="form-select" onChange={handleChange}>
                         {taskStatusArr.map((item, index) => <option value={item.statusId} key={index}>{item.statusName}</option>)}
                     </select>
                 </div>
                 <div className="mb-2 col-3">
                     <label className="form-label fw-bold">Task type</label>
-                    <select name="typeId" className="form-select">
+                    <select name="typeId" className="form-select" onChange={handleChange}>
                         {taskTypeArr.map((item, index) => <option value={item.id} key={index}>{item.taskType}</option>)}
                     </select>
                 </div>
                 <div className="mb-2 col-3">
                     <label className="form-label fw-bold">Priority ID</label>
-                    <select name="priorityId" className="form-select">
+                    <select name="priorityId" className="form-select" onChange={handleChange}>
                         {priorityArr.map((item, index) => <option value={item.priorityId} key={index}>{item.description}</option>)}
                     </select>
                 </div>
@@ -65,7 +77,7 @@ export default function CreateNewTaskForm(props) {
                         <Select
                             mode="multiple"
                             allowClear
-                            options={projectArr[0]?.members.map((item, index) => ({label: item.name, value: item.userId}))}
+                            options={projectArr[0]?.members.map((item, index) => ({ label: item.name, value: item.userId }))}
                             style={{ width: '100%' }}
                             placeholder="Please select"
                             defaultValue={['a10', 'c12']}
@@ -121,3 +133,38 @@ export default function CreateNewTaskForm(props) {
         </form>
     )
 }
+
+const CreateNewTaskWithFormik = withFormik({
+    mapPropsToValues: () => ({
+        taskName: '',
+        projectId: '',
+        statusId: '',
+        typeId: '',
+        priorityId: '',
+        
+     }),
+
+    // Custom sync validation
+    validate: values => {
+        const errors = {};
+
+        if (!values.name) {
+            errors.name = 'Required';
+        }
+
+        return errors;
+    },
+
+    handleSubmit: (values, { setSubmitting, props }) => {
+        console.log('123 Create new task!');
+        console.log('123 Create new task!');
+    },
+
+    displayName: 'Create New Task Form',
+})(CreateNewTaskForm);
+
+const mapStateToProps = (state) => ({
+    //
+})
+
+export default connect(mapStateToProps)(CreateNewTaskWithFormik);
