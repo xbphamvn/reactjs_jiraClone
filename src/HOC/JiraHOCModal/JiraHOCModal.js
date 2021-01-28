@@ -12,10 +12,8 @@ export default function JiraHOCModal(props) {
     const { isModalVisible, innerComponentModal } = useSelector(state => state.JiraHOCModalReducer);
 
     return (
-        <div onClick={handleClose}>
-            <Modal title={null} visible={isModalVisible} width="80%" footer={null}>
-                {innerComponentModal}
-            </Modal>
-        </div>
+        <Modal onOk={handleClose} onCancel={handleClose} title={null} maskClosable={true} visible={isModalVisible} footer={null} width="80%">
+            {innerComponentModal}
+        </Modal>
     )
 }

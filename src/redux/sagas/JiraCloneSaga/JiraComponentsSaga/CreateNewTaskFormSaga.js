@@ -1,8 +1,8 @@
-import { call, delay, put, takeLatest } from 'redux-saga/effects';
+import { call, delay, put, takeLatest, select } from 'redux-saga/effects';
 import { jiraCreateNewTaskServices } from '../../../../services/JiraComponentsServices/JiraCreateNewTaskServices';
-import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_SUCCESS } from '../../../../utils/constants/globalConsts';
+import { CODE_STATUS, JIRA_PATH_PROJECT_MANAGEMENT_PROJECT_ITEM_LINK, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_SUCCESS } from '../../../../utils/constants/globalConsts';
 import { displayNotification } from '../../../../utils/notifications/notifications';
-import { actHideDrawerJiraHOCDrawer } from '../../../actions/JiraCloneActions';
+import { actHideDrawerJiraHOCDrawer, sgaDashboardGetProjectDetailApi } from '../../../actions/JiraCloneActions';
 import { actDisplayLoadingOverlay, actHideLoadingOverlay } from '../../../actions/LoadingActions';
 import { actSetAllMemberByProjectIdToRedux, actSetAllPriorityTypesToRedux, actSetAllProjectsArrToRedux, actSetAllTaskStatusToRedux, actSetAllTaskTypesToRedux, actSetMemberProjectDefaultToRedux } from '../../../actions/normalActions/JiraCreateNewTaskActions';
 import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_MEMBER_BY_PROJECT_ID, SGA_GET_ALL_PRIORITY_TYPES_API } from "../../../constants/JiraCreateNewTaskConsts";
@@ -101,7 +101,7 @@ export function* listenCreateTaskGetAllMemberByProjectId() {
 //Click submit button to create new task
 function* createTaskClickSubmitBtn(action) {
 
-    console.log(action);
+    const {history} = yield select(state => state.JiraPushHistoryToReduxReducer);
 
     yield put(actDisplayLoadingOverlay());
 
@@ -109,6 +109,8 @@ function* createTaskClickSubmitBtn(action) {
         const { status } = yield call(() => jiraCreateNewTaskServices.sgCreateTaskClickSubmitBtn(action.values));
         if (status === CODE_STATUS.SUCCESS) {
             displayNotification(NOTIFICATION_ANTD_SUCCESS, 'Task created!', 'Chúc mừng!');
+            yield put(sgaDashboardGetProjectDetailApi(action.values.projectId));
+            history.push(JIRA_PATH_PROJECT_MANAGEMENT_PROJECT_ITEM_LINK + action.values.projectId);
         } else {
             console.log('Something was wrong! For developer only!');
             displayNotification(NOTIFICATION_ANTD_ERROR, 'Task did not create!', 'Check again!');

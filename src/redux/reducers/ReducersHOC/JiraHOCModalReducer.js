@@ -3,7 +3,8 @@ import { ACT_JIRA_HOC_MODAL_DISPLAY_MODAL, ACT_JIRA_HOC_MODAL_HIDE_MODAL } from 
 
 const initialState = {
     isModalVisible: false,
-    innerComponentModal: <p>Default content!</p>
+    innerComponentModal: <p>Default content!</p>,
+    taskData: {}
 }
 
 export const JiraHOCModalReducer = (state = initialState, action) => {
@@ -16,7 +17,7 @@ export const JiraHOCModalReducer = (state = initialState, action) => {
             return { ...state, isModalVisible: false };
 
         case ACT_JIRA_DETAIL_CLICKED_TASK_ITEM_TO_EDIT:
-            return {...state, isModalVisible: true, innerComponentModal: action.Component};
+            return {...state, isModalVisible: true, innerComponentModal: action.Component, taskData: action.taskData};
 
         default:
             return state;

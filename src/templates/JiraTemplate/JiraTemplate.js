@@ -14,10 +14,6 @@ export const JiraTemplate = (props) => {
             <MenuSideBar />
             <Layout className="site-layout">
                 <Content style={{ padding: '12px 30px', backgroundColor: '#fff' }}>
-                    {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb> */}
                     <div className="site-layout-background" style={{ minHeight: 360 }}>
                         <Component {...propsRoute} />
                     </div>

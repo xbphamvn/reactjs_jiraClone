@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actJiraDetailClickedTaskItemToEdit } from '../../redux/actions/normalActions/JiraDetailComponentActions';
+import JiraDetailModalContent from './JiraDetailModalContent';
 
 export default function JiraDetailProjectItem(props) {
 
@@ -11,7 +12,7 @@ export default function JiraDetailProjectItem(props) {
     const dispatch = useDispatch();
 
     return (
-        <div className="main__project--item" onClick={() => dispatch(actJiraDetailClickedTaskItemToEdit(<p>Default tex</p>))}>
+        <div className="main__project--item" onClick={() => dispatch(actJiraDetailClickedTaskItemToEdit({Component: <JiraDetailModalContent />, taskData: taskData}))}>
             <p>{taskData.taskName}</p>
             <div className="mt-2 mb-0 row align-items-center">
                 <div className="col-3 ml-1">
