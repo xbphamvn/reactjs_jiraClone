@@ -4,7 +4,7 @@ import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_SUCCESS } from 
 import { displayNotification } from '../../../../utils/notifications/notifications';
 import { actHideDrawerJiraHOCDrawer } from '../../../actions/JiraCloneActions';
 import { actDisplayLoadingOverlay, actHideLoadingOverlay } from '../../../actions/LoadingActions';
-import { actSetAllMemberByProjectIdToRedux, actSetAllPriorityTypesToRedux, actSetAllProjectsArrToRedux, actSetAllTaskStatusToRedux, actSetAllTaskTypesToRedux } from '../../../actions/normalActions/JiraCreateNewTaskActions';
+import { actSetAllMemberByProjectIdToRedux, actSetAllPriorityTypesToRedux, actSetAllProjectsArrToRedux, actSetAllTaskStatusToRedux, actSetAllTaskTypesToRedux, actSetMemberProjectDefaultToRedux } from '../../../actions/normalActions/JiraCreateNewTaskActions';
 import { SGA_CREATE_NEW_TASK_SUBMIT_BTN, SGA_GET_ALL_MEMBER_BY_PROJECT_ID, SGA_GET_ALL_PRIORITY_TYPES_API } from "../../../constants/JiraCreateNewTaskConsts";
 
 //Get all priority types
@@ -31,6 +31,7 @@ function* createTaskGetAllProject(action) {
         const { data, status } = yield call(jiraCreateNewTaskServices.sgCreateTaskGetAllProject);
         if (status === CODE_STATUS.SUCCESS) {
             yield put(actSetAllProjectsArrToRedux(data.content));
+            yield put(actSetMemberProjectDefaultToRedux(data.content[0]?.members));
         } else {
             console.log('Something was wrong! For developer only!');
         }

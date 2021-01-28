@@ -118,8 +118,19 @@
     transition: all .5s;
 }
 
-.main__avatar--img:hover {
+.main__avatar--img:hover, .main__avatar--taskDetail:hover {
     transform: translateY(-5px);
+}
+
+.main__avatar--taskDetail {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    margin-left: -7px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .5s;
 }
 
 /* Main options */

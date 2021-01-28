@@ -7,8 +7,10 @@ export const ACT_SET_ALL_PROJECTS_ARR_TO_REDUX = 'ACT_SET_ALL_PROJECTS_ARR_TO_RE
 export const ACT_SET_ALL_TASK_TYPES_TO_REDUX = 'ACT_SET_ALL_TASK_TYPES_TO_REDUX';
 //4. Get all task status
 export const ACT_SET_ALL_TASK_STATUS_TO_REDUX = 'ACT_SET_ALL_TASK_STATUS_TO_REDUX';
-//4. Get all task status
+//5. Get all task status
 export const ACT_SET_ALL_MEMBER_BY_PROJECT_ID_TO_REDUX = 'ACT_SET_ALL_MEMBER_BY_PROJECT_ID_TO_REDUX';
+//6. Set members of project default
+export const ACT_SET_MEMBER_PROJECT_BY_ID_DEFAULT_TO_REDUX = 'ACT_SET_MEMBER_PROJECT_BY_ID_DEFAULT_TO_REDUX'
 
 //SAGA ACTIONS-----------------------------------------------------------------------
 //GET BACKEND DATA TO CREATE NEW TASK

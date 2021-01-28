@@ -85,11 +85,8 @@ function CreateNewTaskForm(props) {
                             options={memberArr?.map((item) => ({ label: item.name, value: item.userId }))}
                             style={{ width: '100%' }}
                             placeholder="Please select"
-                        // defaultValue={['a10', 'c12']}
-                        // onChange={handleChange}
-                        >
-                            {/* {children} */}
-                        </Select>
+                            onChange={(values) => setFieldValue('listUserAsign', values)}
+                        />
                     </div>
                     <div className="mb-2">
                         <label className="form-label fw-bold">ORIGINAL ESTIMATE (HOURS)</label>
