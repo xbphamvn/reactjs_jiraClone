@@ -6,9 +6,11 @@ import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementRe
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
 import { LoadingReducer } from './reducers/LoadingReducer';
+import { JiraDetailTaskItemReducer } from './reducers/ReducersComponents/JiraDetailReducers/JiraDetailTaskItemReducer';
 import { CreateNewTaskFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/CreateNewTaskFormReducer';
 import { UpdateProjectFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/UpdateProjectFormReducer';
 import { JiraHOCDrawerReducer } from './reducers/ReducersHOC/JiraHOCDrawerReducer';
+import { JiraHOCModalReducer } from './reducers/ReducersHOC/JiraHOCModalReducer';
 import { rootSaga } from './sagas/rootSaga';
 
 //setup saga
@@ -20,14 +22,17 @@ const rootReducer = combineReducers({
     JiraUserLoginedReducer,
     JiraCreateProjectReducer,
     JiraProjectManagementReducer,
-    //HOC Drawer
+    //HOC Drawer, Modal
     JiraHOCDrawerReducer,
+    JiraHOCModalReducer,
     //Update project after edit
     UpdateProjectFormReducer,
     //Create new task
     CreateNewTaskFormReducer,
     //PROJECT DASHBOARD
     JiraDashboardReducer,
+    //Icon for task detail
+    JiraDetailTaskItemReducer,
 });
 
 export const store = createStore(
