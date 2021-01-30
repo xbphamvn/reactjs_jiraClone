@@ -186,3 +186,35 @@
 .main__project--item:hover {
     background-color: rgb(235, 236, 240);
 }
+
+/* Task detail modal list assign members */
+.taskDetail__listMember {
+    display: inline-block;
+    padding: 3px 0;
+    margin: 2px 3px;
+    border-radius: 5px;
+    color: #172b4d;
+    text-shadow: 0px 0px 1px #172b4d;
+    background-color: #ebecf0;
+    cursor: pointer;
+}
+
+.taskDetail__listMember--img {
+    width: 24px;
+    height: 24px;
+    vertical-align: -8px;
+    margin: 1px 5px;
+    border-radius: 50%;
+}
+
+.taskDetail__listMember--link {
+    display: inline-block;
+    margin: 2px 3px;
+    color: blue;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.taskDetail__listMember--link:hover {
+    text-decoration: underline;
+}
