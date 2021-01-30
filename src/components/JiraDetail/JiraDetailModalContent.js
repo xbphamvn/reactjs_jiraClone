@@ -2,14 +2,35 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Select, Slider } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
+import JiraTaskComment from '../JiraTaskComment/JiraTaskComment';
 
 export default function JiraDetailModalContent(props) {
 
     const { taskTypeDetail, taskId, taskName, description, assigness } = useSelector(state => state.JiraHOCModalReducer.taskData);
-    const { priorityIcon, taskTypeIcon } = useSelector(state => state.JiraDetailTaskItemReducer);
+    const {commentArr} = useSelector(state => state.JiraHOCModalReducer)
+    const { taskTypeIcon } = useSelector(state => state.JiraDetailTaskItemReducer);
 
-    const { taskData } = useSelector(state => state.JiraHOCModalReducer);
-    console.log(taskData);
+    // const { taskData } = useSelector(state => state.JiraHOCModalReducer);
+    // console.log(taskData);
+
+    const renderCommentArr = () => (
+        commentArr?.map((comment, index) => ((
+            <div className="row contaner-fluid p-0 mt-3" key={index}>
+                <div className="col-1 px-0 text-center">
+                    <img className="w-75 rounded-circle" src={comment.user.avatar} alt={comment.user.avatar} />
+                </div>
+                <div className="col-10 ps-1">
+                    <p className="fw-bold mb-1">{comment.user.name} <span className="fw-normal fst-italic ms-2">{index + 1} day ago</span></p>
+                    {ReactHtmlParser(comment.contentComment)}
+                    <p className="fw-bold">
+                        <span className="text-success" style={{ cursor: 'pointer' }}>Edit</span>
+                        <i className="fas fa-circle mx-2" style={{ fontSize: 3, verticalAlign: 'middle' }} />
+                        <span className="text-danger" style={{ cursor: 'pointer' }}>Delete</span>
+                    </p>
+                </div>
+            </div>
+        )))
+    );
 
     return (
         <div className="row container-fluid px-1">
@@ -23,9 +44,9 @@ export default function JiraDetailModalContent(props) {
                 <div className="col-12">
                     {ReactHtmlParser(description)}
                 </div>
-                <div className="col-12">
-                    <p className="fw-bold">Comments</p>
-                </div>
+                <p className="fw-bold mb-4">Comments</p>
+                <JiraTaskComment taskId={taskId} />
+                {renderCommentArr()}
             </div>
             <div className="col-4">
                 <p className="text-end">

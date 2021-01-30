@@ -5,6 +5,7 @@ import * as sgaProjectManagement from './JiraCloneSaga/JiraProjectManagementSaga
 import * as sgaUpdateProjectForm from './JiraCloneSaga/JiraComponentsSaga/UpdateProjectFormSaga';
 import * as sgaProjectDashboard from './JiraCloneSaga/JiraProjectDashboardSaga';
 import * as sgaCreateNewTask from './JiraCloneSaga/JiraComponentsSaga/CreateNewTaskFormSaga';
+import * as sgaJiraDetailModal from './JiraCloneSaga/JiraComponentsSaga/JiraDetailModalSaga'
 
 export function* rootSaga() {
     yield all([
@@ -29,5 +30,8 @@ export function* rootSaga() {
         sgaCreateNewTask.listenCreateTaskGetAllTaskStatus(),
         sgaCreateNewTask.listenCreateTaskGetAllMemberByProjectId(),
         sgaCreateNewTask.listenCreateTaskClickSubmitBtn(),
+        //Comment actions
+        sgaJiraDetailModal.listenClickPostNewComment(),
+        sgaJiraDetailModal.listenGetAllCommentByTaskId(),
     ])
 }

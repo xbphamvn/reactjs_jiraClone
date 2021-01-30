@@ -6,6 +6,7 @@ import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementRe
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
 import { LoadingReducer } from './reducers/LoadingReducer';
+import { JiraDetailTaskCommentReducer } from './reducers/ReducersComponents/JiraDetailReducers/JiraDetailTaskCommentReducer';
 import { JiraDetailTaskItemReducer } from './reducers/ReducersComponents/JiraDetailReducers/JiraDetailTaskItemReducer';
 import { CreateNewTaskFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/CreateNewTaskFormReducer';
 import { UpdateProjectFormReducer } from './reducers/ReducersComponents/JiraFormsReducers/UpdateProjectFormReducer';
@@ -29,6 +30,8 @@ const rootReducer = combineReducers({
     UpdateProjectFormReducer,
     //Create new task
     CreateNewTaskFormReducer,
+    //TASK COMMENTS
+    JiraDetailTaskCommentReducer,
     //PROJECT DASHBOARD
     JiraDashboardReducer,
     //Icon for task detail
