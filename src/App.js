@@ -1,7 +1,6 @@
 import './App.css';
 import 'antd/dist/antd.css';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import JiraHome from './pages/JiraHome/JiraHome';
 import { JiraTemplate } from './templates/JiraTemplate/JiraTemplate';
 import { LoginTemplate } from './templates/LoginTemplate/LoginTemplate';
 import JiraLogin from './pages/JiraLogin/JiraLogin';
@@ -14,6 +13,7 @@ import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAG
 import JiraProjectManagement from './pages/JiraProjectManagement/JiraProjectManagement';
 import JiraHOCDrawer from './HOC/JiraHOCDrawer/JiraHOCDrawer';
 import JiraHOCModal from './HOC/JiraHOCModal/JiraHOCModal';
+import JiraDashboard from './pages/JiraDashboard/JiraDashboard';
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
       <JiraHOCDrawer />
       <JiraHOCModal />
       <Switch>
-        <JiraTemplate exact path={JIRA_PATH_DASH_BOARD} Component={JiraHome} />
+        <JiraTemplate exact path={JIRA_PATH_DASH_BOARD} Component={JiraDashboard} />
         <JiraTemplate exact path={JIRA_PATH_PROJECT_MANAGEMENT} Component={JiraProjectManagement} />
         <JiraTemplate exact path={JIRA_PATH_CREATE_PROJECT} Component={JiraCreateProject} />
         

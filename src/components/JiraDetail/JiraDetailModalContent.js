@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Select, Slider } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
-import JiraTaskComment from '../JiraTaskComment/JiraTaskComment';
+import JiraTaskMainComment from '../JiraTaskComment/JiraTaskMainComment';
+import JiraTaskCommentItem from '../JiraTaskComment/JiraTaskCommentItem';
 
 export default function JiraDetailModalContent(props) {
 
@@ -15,20 +16,7 @@ export default function JiraDetailModalContent(props) {
 
     const renderCommentArr = () => (
         commentArr?.map((comment, index) => ((
-            <div className="row contaner-fluid p-0 mt-3" key={index}>
-                <div className="col-1 px-0 text-center">
-                    <img className="w-75 rounded-circle" src={comment.user.avatar} alt={comment.user.avatar} />
-                </div>
-                <div className="col-10 ps-1">
-                    <p className="fw-bold mb-1">{comment.user.name} <span className="fw-normal fst-italic ms-2">{index + 1} day ago</span></p>
-                    {ReactHtmlParser(comment.contentComment)}
-                    <p className="fw-bold">
-                        <span className="text-success" style={{ cursor: 'pointer' }}>Edit</span>
-                        <i className="fas fa-circle mx-2" style={{ fontSize: 3, verticalAlign: 'middle' }} />
-                        <span className="text-danger" style={{ cursor: 'pointer' }}>Delete</span>
-                    </p>
-                </div>
-            </div>
+            <JiraTaskCommentItem commentData={comment} key={index} />
         )))
     );
 
@@ -45,7 +33,7 @@ export default function JiraDetailModalContent(props) {
                     {ReactHtmlParser(description)}
                 </div>
                 <p className="fw-bold mb-4">Comments</p>
-                <JiraTaskComment taskId={taskId} />
+                <JiraTaskMainComment taskId={taskId} />
                 {renderCommentArr()}
             </div>
             <div className="col-4">

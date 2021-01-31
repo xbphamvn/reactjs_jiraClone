@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { sgaJiraDetailModalPostNewComment } from '../../redux/actions/sagaActions/JiraDetailModalSagaActions';
 import { actJiraDetailModalDisplayMainCommentEditor, actJiraDetailModalHideMainCommentEditor } from '../../redux/actions/normalActions/JiraDetailCommentActions';
 
-function JiraTaskComment(props) {
-
-    // const [visibleMainComment, setVisibleMainComment] = useState(false);
+function JiraTaskMainComment(props) {
 
     const { userData } = props.JiraUserLoginedReducer.loginedData;
 
@@ -92,7 +90,7 @@ const JiraTaskCommentFormik = withFormik({
         dispatch(actJiraDetailModalHideMainCommentEditor());
     },
     displayName: 'Post new comment',
-})(JiraTaskComment);
+})(JiraTaskMainComment);
 
 const mapStateToProps = state => ({
     JiraUserLoginedReducer: state.JiraUserLoginedReducer,

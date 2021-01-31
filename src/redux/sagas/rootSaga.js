@@ -31,7 +31,9 @@ export function* rootSaga() {
         sgaCreateNewTask.listenCreateTaskGetAllMemberByProjectId(),
         sgaCreateNewTask.listenCreateTaskClickSubmitBtn(),
         //Comment actions
-        sgaJiraDetailModal.listenClickPostNewComment(),
         sgaJiraDetailModal.listenGetAllCommentByTaskId(),
+        sgaJiraDetailModal.listenClickPostNewComment(),
+        sgaJiraDetailModal.listenDeleteCommentApi(),
+        sgaJiraDetailModal.listenUpdateCommentContent(),
     ])
 }
