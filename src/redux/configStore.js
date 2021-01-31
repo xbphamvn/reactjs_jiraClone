@@ -5,6 +5,7 @@ import { JiraDashboardReducer } from './reducers/JiraDashboardReducer';
 import { JiraProjectManagementReducer } from './reducers/JiraProjectManagementReducer';
 import { JiraPushHistoryToReduxReducer } from './reducers/JiraPushHistoryToReduxReducer';
 import { JiraUserLoginedReducer } from './reducers/JiraUserLoginedReducer';
+import { JiraUserManagementReducer } from './reducers/JiraUserManagementReducer';
 import { LoadingReducer } from './reducers/LoadingReducer';
 import { JiraDetailTaskCommentReducer } from './reducers/ReducersComponents/JiraDetailReducers/JiraDetailTaskCommentReducer';
 import { JiraDetailTaskItemReducer } from './reducers/ReducersComponents/JiraDetailReducers/JiraDetailTaskItemReducer';
@@ -36,6 +37,9 @@ const rootReducer = combineReducers({
     JiraDashboardReducer,
     //Icon for task detail
     JiraDetailTaskItemReducer,
+    //Get all user array
+    JiraUserManagementReducer,
+    
 });
 
 export const store = createStore(

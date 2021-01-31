@@ -5,6 +5,8 @@ export const BE_PREFIX_JIRA_CLONE_URL = 'http://casestudy.cyberlearn.vn/api';
 export const JIRA_PATH_DASH_BOARD = '/dashboard/:projectId';
 export const JIRA_PATH_CREATE_PROJECT = '/createproject';
 export const JIRA_PATH_PROJECT_MANAGEMENT = '/projectmanagement';
+export const JIRA_PATH_USER_MANAGEMENT = '/usermanagement';
+export const JIRA_PATH_USER_SIGNUP = '/signup';
 //Path of project management table
 export const JIRA_PATH_PROJECT_MANAGEMENT_PROJECT_ITEM_LINK = '/dashboard/';
 

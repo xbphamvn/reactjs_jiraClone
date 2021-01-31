@@ -23,7 +23,7 @@ function JiraTaskMainComment(props) {
         const normalJsx = (
             <div className="row contaner-fluid p-0">
                 <div className="col-1 px-0 text-center">
-                    <img className="w-75 rounded-circle" src={userData.avatar} alt={userData.avatar} />
+                    <img className="w-75 rounded-circle" src={userData?.avatar} alt={userData?.avatar} />
                 </div>
                 <div className="col-10 ps-1">
                     <textarea className="form-control mb-1" placeholder="Leave a comment here..." style={{ height: 45, resize: 'none', cursor: 'pointer' }} onClick={() => dispatch(actJiraDetailModalDisplayMainCommentEditor())} />

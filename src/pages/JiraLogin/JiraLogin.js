@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { sgaJiraUserLogin } from '../../redux/actions/JiraCloneActions';
+import { JIRA_PATH_USER_SIGNUP } from '../../utils/constants/globalConsts';
 
 export default function JiraLogin(props) {
 
@@ -13,7 +14,7 @@ export default function JiraLogin(props) {
     };
 
     return (
-        <Form name="normal_login" className="login-form col-lg-6 mx-auto" style={{ marginTop: '24%' }} initialValues={{ remember: true }} onFinish={onFinish}>
+        <Form name="normal_login" className="login-form col-lg-6 mx-auto" initialValues={{ remember: true }} onFinish={onFinish}>
             <p className="text-center">Acc demo: xbphamvn@gmail.com - Pass: 123456</p>
             <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
                 <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
@@ -33,7 +34,7 @@ export default function JiraLogin(props) {
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
                     Log in
-                </Button> Or <a href="#loginlink">register now!</a>
+                </Button> Or <a href={JIRA_PATH_USER_SIGNUP}>register now!</a>
             </Form.Item>
         </Form>
     )

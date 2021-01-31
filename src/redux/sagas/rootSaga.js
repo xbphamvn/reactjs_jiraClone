@@ -5,7 +5,8 @@ import * as sgaProjectManagement from './JiraCloneSaga/JiraProjectManagementSaga
 import * as sgaUpdateProjectForm from './JiraCloneSaga/JiraComponentsSaga/UpdateProjectFormSaga';
 import * as sgaProjectDashboard from './JiraCloneSaga/JiraProjectDashboardSaga';
 import * as sgaCreateNewTask from './JiraCloneSaga/JiraComponentsSaga/CreateNewTaskFormSaga';
-import * as sgaJiraDetailModal from './JiraCloneSaga/JiraComponentsSaga/JiraDetailModalSaga'
+import * as sgaJiraDetailModal from './JiraCloneSaga/JiraComponentsSaga/JiraDetailModalSaga';
+import * as JiraUserManagementSaga from './JiraCloneSaga/JiraUserManagementSaga';
 
 export function* rootSaga() {
     yield all([
@@ -35,5 +36,10 @@ export function* rootSaga() {
         sgaJiraDetailModal.listenClickPostNewComment(),
         sgaJiraDetailModal.listenDeleteCommentApi(),
         sgaJiraDetailModal.listenUpdateCommentContent(),
+        //User Management
+        JiraUserManagementSaga.listenGetAllUserArrApi(),
+        JiraUserManagementSaga.listenDeleteUserApi(),
+        JiraUserManagementSaga.listenSignupNewUserApi(),
+        JiraUserManagementSaga.listenUpdateUserInfo(),
     ])
 }

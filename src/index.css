@@ -232,3 +232,16 @@
     text-decoration: underline;
     border: solid 1px #999;
 }
+
+/* User management */
+.userManagement__header {
+    cursor: pointer;
+}
+
+.userManagement__header img {
+    height: 40px;
+}
+
+.userManagement__header i {
+    vertical-align: middle;
+}
