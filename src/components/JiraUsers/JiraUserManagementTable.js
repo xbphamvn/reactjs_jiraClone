@@ -35,14 +35,14 @@ export default function JiraUserManagementTable(props) {
       render: name => name.length < 5 ? <Tag color="blue">{name}</Tag> : <Tag color="gold">{name}</Tag>
     },
     {
+      title: 'Email',
+      key: 'email',
+      dataIndex: 'email',
+    },
+    {
       title: 'Phone No.',
-      key: 'phone',
-      dataIndex: 'phone',
-      render: phone => (
-        <>
-          Wait for backend
-        </>
-      ),
+      key: 'phoneNumber',
+      dataIndex: 'phoneNumber',
     },
     {
       title: 'Action',

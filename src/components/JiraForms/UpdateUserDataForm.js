@@ -5,47 +5,14 @@ import { sgaJiraUserManagementUpdateUserBtn } from '../../redux/actions/sagaActi
 
 function UpdateUserDataForm(props) {
 
-    // const { userData } = useSelector(state => state.JiraHOCModalReducer);
-
-    // const dispatch = useDispatch();
-
-    // const [updateData, setUpdateData] = useState({
-    //     id: `${userData.id}`,
-    //     passWord: '',
-    //     name: `${userData.name}`,
-    //     phoneNumber: ''
-    // });
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.currentTarget;
-    //     setUpdateData({
-    //         ...updateData, [name]: value
-    //     });
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     dispatch(sgaJiraUserManagementUpdateUserBtn(updateData));
-    // };
-
-
-
-
-    
     const {
         values,
         touched,
         errors,
         handleChange,
-        handleBlur,
+        // handleBlur,
         handleSubmit,
-        setFieldValue,
-        userData
-        
     } = props;
-
-
-
 
     return (
         <form className="row container-fluid w-75 mx-auto" onSubmit={handleSubmit}>
@@ -67,7 +34,7 @@ function UpdateUserDataForm(props) {
             </div>
             <div className="mb-3 col-6">
                 <label className="form-label">Phone number</label>
-                <input type="text" name="phoneNumber" className="form-control" onChange={handleChange} />
+                <input type="text" name="phoneNumber" value={values.phoneNumber} className="form-control" onChange={handleChange} />
                 {errors.phoneNumber && touched.phoneNumber && <div className="text-danger" id="feedback">{errors.phoneNumber}</div>}
             </div>
             <div className="mb-3">
@@ -80,15 +47,14 @@ function UpdateUserDataForm(props) {
     )
 };
 
-
 const updateUserDataWithFormik = withFormik({
     enableReinitialize: true,
     mapPropsToValues: (props) => ({
         id: props.userData?.userId,
         passWord: '',
         name: props.userData?.name,
-        phoneNumber: '',
-        email: '',
+        phoneNumber: props.userData?.phoneNumber,
+        email: props.userData?.email,
     }),
 
     // Custom sync validation
