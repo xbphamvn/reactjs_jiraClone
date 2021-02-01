@@ -34,7 +34,7 @@ function JiraTaskMainComment(props) {
         const EditorJsx = (
             <form className="row contaner-fluid p-0" onSubmit={handleSubmit}>
                 <div className="col-1 px-0 text-center">
-                    <img className="w-75 rounded-circle" src={userData.avatar} alt={userData.avatar} />
+                    <img className="w-75 rounded-circle" src={userData?.avatar} alt={userData?.avatar} />
                 </div>
                 <div className="col-10 ps-1">
                     <Editor
