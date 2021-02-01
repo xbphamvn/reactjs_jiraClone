@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, Layout } from 'antd';
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
-import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAGEMENT } from '../../utils/constants/globalConsts';
+import { JIRA_PATH_CREATE_PROJECT, JIRA_PATH_DASH_BOARD, JIRA_PATH_PROJECT_MANAGEMENT, JIRA_PATH_USER_MANAGEMENT } from '../../utils/constants/globalConsts';
 import { useDispatch } from 'react-redux';
 import { actClickCreateNewTaskBtn } from '../../redux/actions/JiraCloneActions';
 import CreateNewTaskForm from '../JiraForms/CreateNewTaskForm';
@@ -45,6 +45,7 @@ export default function MenuSideBar(props) {
                     <NavLink to={JIRA_PATH_DASH_BOARD} activeClassName="sidebar_active" className="options__item"><i className="fa fa-id-card" /> Dash Board</NavLink>
                     <NavLink to={JIRA_PATH_PROJECT_MANAGEMENT} activeClassName="sidebar_active" className="options__item"><i className="fa fa-cog" /> Project management</NavLink>
                     <NavLink to={JIRA_PATH_CREATE_PROJECT} activeClassName="sidebar_active" className="options__item"><i className="fa fa-edit" /> Create Project</NavLink>
+                    <NavLink to={JIRA_PATH_USER_MANAGEMENT} activeClassName="sidebar_active" className="options__item"><i className="fa fa-users" /> User Management</NavLink>
                     <hr />
                     <NavLink to="/abc" activeClassName="sidebar_active" className="options__item"><i className="fa fa-truck" /> Dash Board</NavLink>
                     <NavLink to="/abc" activeClassName="sidebar_active" className="options__item"><i className="fa fa-database" /> Dash Board</NavLink>

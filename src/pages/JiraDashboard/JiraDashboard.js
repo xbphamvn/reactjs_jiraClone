@@ -4,15 +4,17 @@ import JiraDetailBody from '../../components/JiraDetail/JiraDetailBody';
 import JiraDetailHeader from '../../components/JiraDetail/JiraDetailHeader';
 import { sgaDashboardGetProjectDetailApi } from '../../redux/actions/JiraCloneActions';
 
-export default function JiraHome(props) {
+export default function JiraDashboard(props) {
 
     const { projectDetail } = useSelector(state => state.JiraDashboardReducer);
+
+    const { allProjectArr } = useSelector(state => state.JiraProjectManagementReducer);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         const { projectId } = props.match.params;
-        dispatch(sgaDashboardGetProjectDetailApi(projectId));
+        projectId === ':projectId' ? dispatch(sgaDashboardGetProjectDetailApi(allProjectArr[0]?.id)) : dispatch(sgaDashboardGetProjectDetailApi(projectId));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

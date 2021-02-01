@@ -2,14 +2,23 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Select, Slider } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
+import JiraTaskMainComment from '../JiraTaskComment/JiraTaskMainComment';
+import JiraTaskCommentItem from '../JiraTaskComment/JiraTaskCommentItem';
 
 export default function JiraDetailModalContent(props) {
 
     const { taskTypeDetail, taskId, taskName, description, assigness } = useSelector(state => state.JiraHOCModalReducer.taskData);
-    const { priorityIcon, taskTypeIcon } = useSelector(state => state.JiraDetailTaskItemReducer);
+    const {commentArr} = useSelector(state => state.JiraHOCModalReducer)
+    const { taskTypeIcon } = useSelector(state => state.JiraDetailTaskItemReducer);
 
-    const { taskData } = useSelector(state => state.JiraHOCModalReducer);
-    console.log(taskData);
+    // const { taskData } = useSelector(state => state.JiraHOCModalReducer);
+    // console.log(taskData);
+
+    const renderCommentArr = () => (
+        commentArr?.map((comment, index) => ((
+            <JiraTaskCommentItem commentData={comment} key={index} />
+        )))
+    );
 
     return (
         <div className="row container-fluid px-1">
@@ -23,9 +32,9 @@ export default function JiraDetailModalContent(props) {
                 <div className="col-12">
                     {ReactHtmlParser(description)}
                 </div>
-                <div className="col-12">
-                    <p className="fw-bold">Comments</p>
-                </div>
+                <p className="fw-bold mb-4">Comments</p>
+                <JiraTaskMainComment taskId={taskId} />
+                {renderCommentArr()}
             </div>
             <div className="col-4">
                 <p className="text-end">

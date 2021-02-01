@@ -218,3 +218,30 @@
 .taskDetail__listMember--link:hover {
     text-decoration: underline;
 }
+
+/* Jira comment */
+.jiraComment__action {
+    cursor: pointer;
+    padding: 0px 5px;
+    transition: all .5s;
+    border: solid 1px transparent;
+    border-radius: 3px;
+}
+
+.jiraComment__action:hover {
+    text-decoration: underline;
+    border: solid 1px #999;
+}
+
+/* User management */
+.userManagement__header {
+    cursor: pointer;
+}
+
+.userManagement__header img {
+    height: 40px;
+}
+
+.userManagement__header i {
+    vertical-align: middle;
+}
