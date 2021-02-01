@@ -5,7 +5,7 @@ import { sgaJiraUserManagementUpdateUserBtn } from '../../redux/actions/sagaActi
 
 export default function UpdateUserDataForm(props) {
 
-    const { userData } = useSelector(state => state.JiraUserManagementReducer);
+    const { userData } = useSelector(state => state.JiraHOCModalReducer);
 
     const dispatch = useDispatch();
 

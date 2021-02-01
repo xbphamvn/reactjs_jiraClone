@@ -8,7 +8,8 @@ const initialState = {
     innerComponentModal: <p>Default content!</p>,
     taskData: {},
     commentArr: [],
-    modalTitle: ''
+    userData: [],
+    modalTitle: '',
 }
 
 export const JiraHOCModalReducer = (state = initialState, action) => {
@@ -30,7 +31,7 @@ export const JiraHOCModalReducer = (state = initialState, action) => {
             return {...state, isModalVisible: true, innerComponentModal: action.Component, modalTitle: 'Signup a new user!'};
 
         case ACT_JIRA_USER_MANAGEMENT_CLICK_EDIT_USER_BTN:
-            return {...state, isModalVisible: true, innerComponentModal: action.Component, modalTitle: 'Update user info'};
+            return {...state, isModalVisible: true, innerComponentModal: action.Component, userData: action.userData, modalTitle: 'Update user info'};
 
         default:
             return state;
