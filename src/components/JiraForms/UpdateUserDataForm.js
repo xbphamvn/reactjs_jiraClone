@@ -56,7 +56,7 @@ function UpdateUserDataForm(props) {
             </div>
             <div className="mb-3 col-6">
                 <label className="form-label">Email address</label>
-                <input type="email" className="form-control" value="default@email.com" />
+                <input type="email" name="email" className="form-control" value={values.email} onChange={handleChange} />
                 {errors.email && touched.email && <div className="text-danger" id="feedback">{errors.email}</div>}
                 <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
