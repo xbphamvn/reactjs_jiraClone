@@ -1,4 +1,4 @@
-import { call, delay, put, takeLatest } from 'redux-saga/effects';
+import { call, delay, put, select, takeLatest } from 'redux-saga/effects';
 import { jiraUserManagementServices } from '../../../services/JiraCloneServices/JiraUserManagementServices';
 import { CODE_STATUS, NOTIFICATION_ANTD_ERROR, NOTIFICATION_ANTD_SUCCESS } from '../../../utils/constants/globalConsts';
 import { displayNotification } from '../../../utils/notifications/notifications';
@@ -63,12 +63,15 @@ function* signupNewUserApi(action) {
 
     yield put(actDisplayLoadingOverlay());
 
+    const {history} = yield select(state => state.JiraPushHistoryToReduxReducer);
+
     try {
         const { data, status } = yield call(() => jiraUserManagementServices.sgSignupNewUser(action.signupData));
         if (status === CODE_STATUS.SUCCESS) {
-            displayNotification(NOTIFICATION_ANTD_SUCCESS, data.message, 'Signup success!');
+            displayNotification(NOTIFICATION_ANTD_SUCCESS, data.message, 'Signup success! Redirecting to login page!');
             yield put(sgaJiraManagementGetAllUserArr());
             yield put(actJiraHOCModalHideModal());
+            history.push('/');
         } else {
             console.log('Something was wrong! For developer only!');
             displayNotification(NOTIFICATION_ANTD_ERROR, 'Title delete wrong', 'Signup user was wrong!');

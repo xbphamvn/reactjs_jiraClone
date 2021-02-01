@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { withFormik } from 'formik';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { actSetSubmitBtnJiraHOCDrawer, sgaJiraCreateGetProjectCategories, sgaSubmitBtnAfterEditedProject } from '../../redux/actions/JiraCloneActions';
 
 function UpdateProjectForm(props) {
@@ -15,9 +15,8 @@ function UpdateProjectForm(props) {
         handleSubmit,
         setFieldValue,
         projectCategories,
+        dispatch
     } = props;
-
-    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(sgaJiraCreateGetProjectCategories());

@@ -3,7 +3,7 @@ import { Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { sgaJiraManagementGetAllUserArr, sgaJiraUserManagementDeleteUserBtn } from '../../redux/actions/sagaActions/JiraUserManagementSagaActions';
 import UpdateUserDataForm from '../JiraForms/UpdateUserDataForm';
-import { actJiraUserManagementEitUserBtn, actJiraUserManagementPushUserDataToRedux } from '../../redux/actions/normalActions/JiraUserManagementActions';
+import { actJiraUserManagementEitUserBtn } from '../../redux/actions/normalActions/JiraUserManagementActions';
 
 export default function JiraUserManagementTable(props) {
 
@@ -49,10 +49,7 @@ export default function JiraUserManagementTable(props) {
       key: 'action',
       render: (text, record) => (
         <>
-          <button className="btn btn-outline-primary btn-sm" onClick={() => {
-            dispatch(actJiraUserManagementEitUserBtn(<UpdateUserDataForm />));
-            dispatch(actJiraUserManagementPushUserDataToRedux(record));
-          }}>
+          <button className="btn btn-outline-primary btn-sm" onClick={() => dispatch(actJiraUserManagementEitUserBtn({Component: <UpdateUserDataForm />, userData: record}))}>
             Edit
           </button>
           <button className="btn btn-outline-danger btn-sm ms-2" onClick={() => dispatch(sgaJiraUserManagementDeleteUserBtn(record.userId))}>
