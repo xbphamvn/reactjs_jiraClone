@@ -7,7 +7,7 @@ export class BaseServices {
         Axios({
             method: 'GET',
             url: `${BE_PREFIX_JIRA_CLONE_URL}/${url}`,
-            headers: {Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME)}
+            headers: {'Access-Control-Allow-Origin': 'Access-Control-Allow-Origin', Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME) }
         })
     )
 
@@ -16,7 +16,7 @@ export class BaseServices {
             method: 'POST',
             url: `${BE_PREFIX_JIRA_CLONE_URL}/${url}`,
             data: model,
-            headers: {Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME)}
+            headers: { Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME) }
         })
     )
 
@@ -25,7 +25,7 @@ export class BaseServices {
             method: 'PUT',
             url: `${BE_PREFIX_JIRA_CLONE_URL}/${url}`,
             data: model,
-            headers: {Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME)}
+            headers: { Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME) }
         })
     )
 
@@ -33,7 +33,7 @@ export class BaseServices {
         Axios({
             method: 'DELETE',
             url: `${BE_PREFIX_JIRA_CLONE_URL}/${url}`,
-            headers: {Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME)}
+            headers: { Authorization: 'Bearer ' + localStorage.getItem(LOCALSTORAGE_TOKEN_NAME) }
         })
     )
 }

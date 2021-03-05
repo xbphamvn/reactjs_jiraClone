@@ -36,7 +36,7 @@ function JiraTaskCommentItem(props) {
                 <span className="text-danger jiraComment__action" onClick={() => dispatch(sgaJiraDetailModalDeleteComment(commentData.id))}>Delete</span>
             </p>
         );
-        return userData.id === commentData.userId ? jsxActionButton : '';
+        return userData?.id === commentData.userId ? jsxActionButton : '';
     };
 
     const handleEditorChange = (content, editor) => setFieldValue('contentComment', content);
